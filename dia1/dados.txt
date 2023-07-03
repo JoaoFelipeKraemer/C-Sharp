@@ -1,0 +1,70 @@
+Tipo	Valores Possíveis
+string  'xxxx'
+bool	true e false
+byte	0 a 255
+sbyte	-128 a 127
+short	-32.768 a 32.767
+ushort	0 a 65.535
+int	-2.147.483.648 a 2.147.483.647
+uint	0 a 4.294.967.295
+long	-9.223.372.036.854.775.808 a 9.223.372.036.854.775.807
+ulong	0 a 0 a 18.446.744.073.709.551.615
+float	Valores de ponto flutuante de até 7 dígitos. Ex: -3.402823e38 a 3.402823e38
+double	Valores de ponto flutuante de até 15 dígitos. Ex: -1.79769313486232e308 a 1.79769313486232e308
+decimal	Números com até 28 casas decimais. Ex: 0.991m, 33.333m
+char	Um unico caractere delimitado por aspas simples. Ex: ‘ç’,’M’,’f’
+
+
+enum CardinalPoints
+{
+    Norte,
+    Sul,
+    Leste,
+    Oeste
+};
+//Utilizando um enum
+CardinalPoints direction = CardinalPoints.Norte;
+Console.WriteLine("Ponto Cardeal: "+direction);
+================================================================
+//Como declarar uma constante
+const string url = "https://www.betrybe.com/";
+const int numberOfAttemptsAllowed = 5;
+================================================================
+  //esta variável será compilada como string
+var school = "Trybe";
+
+//esta variável será compilada como int
+var semester = 1;
+
+//esta variável será compilada como um tipo anônimo
+var student = new { name = "Jorge", age = 30 };
+
+Console.WriteLine("Olá! Me chamo " + student.name + " " +
+                  "sou um estudante da escola " + school + " " +
+                  "estou no " + semester + "º semestre " +
+                  "e tenho " + student.age + " anos"); 
+======================================
+
+//ENTRADA DE DADOS
+Console.WriteLine("Boas vindas ao programa 'Calcula Lâmpada'!");
+Console.WriteLine("Informe o nome do cômodo: ");
+string convenient = Console.ReadLine();
+
+Console.WriteLine("Informe em metros a largura deste cômodo: ");
+decimal width = decimal.Parse(Console.ReadLine());
+
+Console.WriteLine("Informe em metros o comprimento deste cômodo: ");
+decimal length = decimal.Parse(Console.ReadLine());
+
+Console.WriteLine("Informe a potência em watts da lâmpada que será utilizada: ");
+int power = int.Parse(Console.ReadLine());
+
+//PROCESSAMENTO
+decimal squareMeter = width * length;
+decimal quotientX = power / 18M;
+decimal totalLightBulbs = squareMeter / quotientX;
+
+//SAIDA DE DADOS
+Console.WriteLine("Para iluminar o cômodo: " + convenient + " com " + 
+squareMeter.ToString("N2") + " metros quadrados " + "será necessário a instalação de "
+ + totalLightBulbs.ToString("N2") + " lâmpada(s)");
