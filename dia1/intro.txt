@@ -1,0 +1,19 @@
+O q será aprendido
+A plataforma de desenvolvimento .NET e como funciona
+Estrutura de projetos em C#
+Tipos de variáveis
+Operações Aritméticas
+Hello World! em C#
+
+dotnet --help
+dotnet new conole -o nomedapasta
+
+dotnet build
+
+dotnet run
+
+ Uma Console Application é uma categoria de aplicação
+ cuja interface de comunicação é puramente textual, pois
+  não possui uma interface gráfica GUI (Graphical User Interface)
+   de comunicação com a pessoa usuária.
+
