@@ -1,0 +1,45 @@
+A transformação de uma variável de determinado tipo em outro
+ pode ocorrer de diferentes formas. Essas transformações são chamadas de:
+
+
+========================
+Cast Implícito: ocorrem de maneira mais automática, sem que 
+a pessoa desenvolvedora precise intervir via código.
+
+Cast Implícito
+O casting implícito, como o próprio nome sugere, ocorre quando não 
+declaramos no código que essa transformação deve ocorrer, ou seja,
+ a deixamos implícita no código.
+ ex:
+ public class Program
+{
+    public static void Main()
+    {
+        int someIntNumber = 51;
+        long longNumberCast = someIntNumber;
+
+        Console.WriteLine(longNumberCast);
+    }
+}
+
+variável do tipo long consegue, perfeitamente e sem perda de informação, 
+acomodar o valor da variável do tipo int.  pois os espaços de memória são compatíveis.
+
+
+Isso ocorre porque uma variável do tipo long é compatível
+com uma variável do tipo int, pois int representa um número inteiro em que cabem 32 bits
+-----------------------------------
+Ok, mas qual é o uso interessante que poderíamos ter com esse tipo de conversão?
+-----------------------------------
+
+public class Program
+{
+    public static void Main()
+    {
+        int intResult = 5/2;
+
+        Console.WriteLine(intResult);
+    }
+}
+
+ao invés de retornar 2,5 nos retorna 2 poisa variavel intResult é int
