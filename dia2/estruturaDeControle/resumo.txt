@@ -1,0 +1,23 @@
+Estruturas de controle
+
+Permitem alterar a ordem de execução dos blocos de instruções.
+
+Fluxo de controle
+
+Ordem em que os blocos de instruções são executados.
+
+Como utilizar if, if/else e if/else aninhados
+
+Estrutura de controle que executa bloco de instruções conforme a avaliação de uma instrução.
+
+Como utilizar switch/case
+
+Estrutura de controle que permite avaliar valores para determinada variável.
+
+Quais são os operadores de comparação de C#
+
+, >=, <, <=, == e !=
+
+Quais são os operadores lógicos de C#
+
+&&, || e !
