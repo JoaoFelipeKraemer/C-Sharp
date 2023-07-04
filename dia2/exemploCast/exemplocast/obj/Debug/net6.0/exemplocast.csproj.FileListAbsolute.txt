@@ -1,0 +1,15 @@
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/bin/Debug/net6.0/exemplocast
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/bin/Debug/net6.0/exemplocast.deps.json
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/bin/Debug/net6.0/exemplocast.runtimeconfig.json
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/bin/Debug/net6.0/exemplocast.dll
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/bin/Debug/net6.0/exemplocast.pdb
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/obj/Debug/net6.0/exemplocast.csproj.AssemblyReference.cache
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/obj/Debug/net6.0/exemplocast.GeneratedMSBuildEditorConfig.editorconfig
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/obj/Debug/net6.0/exemplocast.AssemblyInfoInputs.cache
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/obj/Debug/net6.0/exemplocast.AssemblyInfo.cs
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/obj/Debug/net6.0/exemplocast.csproj.CoreCompileInputs.cache
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/obj/Debug/net6.0/exemplocast.dll
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/obj/Debug/net6.0/refint/exemplocast.dll
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/obj/Debug/net6.0/exemplocast.pdb
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/obj/Debug/net6.0/exemplocast.genruntimeconfig.cache
+/home/joao/trybe-exercicios/05-C-sharp/dia2/exemploCast/exemplocast/obj/Debug/net6.0/ref/exemplocast.dll

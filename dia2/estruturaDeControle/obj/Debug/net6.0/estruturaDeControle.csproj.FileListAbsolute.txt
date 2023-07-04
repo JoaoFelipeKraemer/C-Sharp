@@ -1,0 +1,15 @@
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/bin/Debug/net6.0/estruturaDeControle
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/bin/Debug/net6.0/estruturaDeControle.deps.json
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/bin/Debug/net6.0/estruturaDeControle.runtimeconfig.json
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/bin/Debug/net6.0/estruturaDeControle.dll
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/bin/Debug/net6.0/estruturaDeControle.pdb
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/obj/Debug/net6.0/estruturaDeControle.csproj.AssemblyReference.cache
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/obj/Debug/net6.0/estruturaDeControle.GeneratedMSBuildEditorConfig.editorconfig
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/obj/Debug/net6.0/estruturaDeControle.AssemblyInfoInputs.cache
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/obj/Debug/net6.0/estruturaDeControle.AssemblyInfo.cs
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/obj/Debug/net6.0/estruturaDeControle.csproj.CoreCompileInputs.cache
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/obj/Debug/net6.0/estruturaDeControle.dll
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/obj/Debug/net6.0/refint/estruturaDeControle.dll
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/obj/Debug/net6.0/estruturaDeControle.pdb
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/obj/Debug/net6.0/estruturaDeControle.genruntimeconfig.cache
+/home/joao/trybe-exercicios/05-C-sharp/dia2/estruturaDeControle/obj/Debug/net6.0/ref/estruturaDeControle.dll

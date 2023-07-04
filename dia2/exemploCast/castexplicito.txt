@@ -1,0 +1,99 @@
+A transformação de uma variável de determinado tipo em outro
+ pode ocorrer de diferentes formas. Essas transformações são chamadas de:
+
+
+Cast Explícito: quando precisamos escrever a transformação
+ e como ela irá ocorrer via código.
+
+Nem sempre podemos deixar todo o trabalho pesado para o nosso compilador… 
+Às vezes precisamos colocar a mão na massa.
+
+Existem operações que NÃO podem ser feitas implicitamente, 
+pois nós precisamos indicar a ação a ser tomada.
+Veja o exemplo abaixo:
+ex:
+
+public class Program
+{
+    public static void Main()
+    {
+        long someLongNumber = 516144066604654;
+        int intNumber = someLongNumber;
+
+        Console.WriteLine(intNumber);
+    }
+}
+
+nesse caso n é possivel acomodar long em int pois  os espaços de memória, não são compatíveis.
+----
+correção da public class Program
+----
+
+public class Program
+{
+    public static void Main()
+    {
+        long someLongNumber = 516144564564654;
+        int intNumber = (int) someLongNumber;
+
+        Console.WriteLine(intNumber);
+    }
+}
+-----
+Outra opção é utilizar o Convert acompanhada do .ToInt32, indicando assim que desejamos
+ realizar uma conversão explícita e, com o .ToInt32, indicamos o tipo para o 
+ qual desejamos que a variável seja convertida.
+-----
+
+public class Program
+{
+    public static void Main()
+    {
+        long someLongNumber = 516144564564654;
+        int intNumber = Convert.ToInt32(someLongNumber);
+        Console.WriteLine(intNumber);
+    }
+}
+nesse caso Convert.ToInt32 irá nos avisar que o número n cabe em uam variavel int
+
+Unhandled exception. System.OverflowException: Value was either too large or too small for an Int32.
+   at System.Convert.ThrowInt32OverflowException()
+   at System.Convert.ToInt32(Int64 value)
+   at Program.Main() in /Users/user/C#/teste cod/Program.cs:line 6
+
+=============================
+e se quiser converter strings para numeros?
+
+public class Program
+{
+    public static void Main()
+    {
+        string someString = "42";
+        int convertInt = Convert.ToInt32(someString);
+
+        Console.WriteLine(convertInt);
+    }
+}
+#retorno 42
+========================================================
+não podemos garantir sempre que uma string terá um conteúdo que possa ser convertido para um número
+
+Nesse caso, dentro da biblioteca Convert, podemos 
+usar a função TryParse sobre os tipos de dados. 
+Essa função tenta converter explicitamente e informa caso não consiga.
+
+Nesse caso, dentro da biblioteca Convert, podemos usar a função TryParse 
+sobre os tipos de dados. Essa função tenta converter explicitamente e informa caso não consiga.
+
+Sua sintaxe é:
+bool canConvert = Int32.TryParse(userEntry, out valueConverted)
+
+-------
+Acima:
+tentamos converter a string userEntry para o tipo inteiro. 
+Se a conversão for realizada, a função irá retornar na variável
+booleana canConvert o valor true e irá retornar o valor convertido 
+em int na variável valueConverted. Se a conversão não puder ser realizada,
+a função irá retornar na variável booleana canConvert o 
+valor false e não irá criar a variável valueConverted.
+-------

@@ -1,0 +1,6 @@
+o que será aprendido?
+Transformação entre tipos de variáveis
+Estruturas de controle no C#
+Estruturas de repetição no C#
+
+
