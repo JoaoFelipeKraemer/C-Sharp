@@ -1,0 +1,22 @@
+for (inicialização; condição; incremento)
+{
+    //comandos;
+}
+
+3 expressões:
+A 1 º é a de inicialização. As variáveis inicializadas no cabeçalho for
+ ficam disponíveis somente no escopo do loop, ou seja, somente dentro do código de iteração do loop.
+
+A 2 º é a condição para a execução da iteração do laço. Na primeira execução do loop,
+ a condição é testada após a inicialização, nas demais iterações a condição é testada após o incremento.
+
+A 3 º é responsável por fazer a iteração da variável. 
+Essa expressão é executada ao final do bloco de instruções e antes
+da verificação da condição do loop. Vamos observar o funcionamento 
+dessas três expressões no exemplo a seguir:
+
+exemplo:
+for (int count = 0; count < 3; count++)
+{
+    Console.WriteLine("numero: " + count);
+}

@@ -1,0 +1,13 @@
+Relembrando🧠
+O que são estruturas de repetição?
+São estruturas que permitem executar repetidamente um trecho de código.
+
+O que são while, do/while, for e foreach?
+São os tipos de estruturas de repetição, com diferentes sintaxes.
+
+Como utilizar break?
+É uma instrução utilizada para interromper a execução de uma laço de repetição.
+
+Como utilizar continue?
+É uma instrução utilizada para pular para o próximo laço de repetição.
+
