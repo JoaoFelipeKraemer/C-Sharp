@@ -1,0 +1,15 @@
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/bin/Debug/net6.0/pratica
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/bin/Debug/net6.0/pratica.deps.json
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/bin/Debug/net6.0/pratica.runtimeconfig.json
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/bin/Debug/net6.0/pratica.dll
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/bin/Debug/net6.0/pratica.pdb
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/obj/Debug/net6.0/pratica.csproj.AssemblyReference.cache
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/obj/Debug/net6.0/pratica.GeneratedMSBuildEditorConfig.editorconfig
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/obj/Debug/net6.0/pratica.AssemblyInfoInputs.cache
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/obj/Debug/net6.0/pratica.AssemblyInfo.cs
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/obj/Debug/net6.0/pratica.csproj.CoreCompileInputs.cache
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/obj/Debug/net6.0/pratica.dll
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/obj/Debug/net6.0/refint/pratica.dll
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/obj/Debug/net6.0/pratica.pdb
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/obj/Debug/net6.0/pratica.genruntimeconfig.cache
+/home/joao/trybe-exercicios/05-C-sharp/dia2/repeticao/pratica/obj/Debug/net6.0/ref/pratica.dll
