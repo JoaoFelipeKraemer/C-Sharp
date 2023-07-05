@@ -1,0 +1,17 @@
+while (condição)
+{
+   //bloco de código a ser executado quando a condição for VERDADEIRA
+    comandos;
+}
+
+exemplo:
+var count = 0;
+while (count < 10)
+{
+    Console.WriteLine("count " + count);
+    count++;
+}
+
+-> A instrução While testa a variável antes de executar o bloco de instruções. 
+
+-> A instruçãodo/while executa o bloco de instruções antes de avaliar a variável proposta.

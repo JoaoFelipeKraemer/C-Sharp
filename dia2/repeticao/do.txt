@@ -1,0 +1,13 @@
+do/while -> fará primeiro a execução 
+de um bloco de instruções para depois avaliar a expressão 
+booleana especificada, e quando essa expressão for verdadeira,
+voltará ao início do bloco.
+exemplo:
+
+var count = 0;
+do
+{
+    Console.WriteLine("count " + count);
+    count++;
+}
+while (count < 10);
