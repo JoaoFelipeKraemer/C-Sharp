@@ -1,0 +1,51 @@
+Os Arrays em C# são parecidos com os Arrays em Javascript.
+O que os diferencia é que, em C#, por se tratar de uma linguagem Fortemente Tipada,
+os dados são armazenados de apenas um tipo definido previamente.
+A vantagem disso é a confiabilidade dos dados no sistema.
+
+Arrays podem ter três diferentes formatos:
+
+Arrays únicos
+
+Arrays multidimensionais
+
+Arrays Jagged (ou dentado).
+-----------------------------
+SINTAXE:
+
+<Tipo>[] <NomeDoArray>; 
+
+int[] myFirstArray;
+
+string[] arrayExemplo;
+
+------------------------------
+TAMANHO DO ARRAY:
+
+//Criando o array
+int[] myFirstArray;
+
+//instanciando array: 
+//array = new tipo[tamanhoDoArray];
+myFirstArray = new int[5];
+
+É comum simplificarmos essa inicialização e fazer junto da criação do Array:
+
+int[] myFirstArray = new int[5];
+-------------------------------
+Podemos também inicializar um Array com valores pré-definidos de duas formas diferentes:
+
+int[] myFirstArray1 = new int[] {1, 2, 3, 4, 5};
+
+int[] myFirstArray2 = {1, 2, 3, 4, 5};
+
+string[] myFirsStringArray1 = new string[] {"Vamo", "que", "vamo", "!"};
+
+string[] myFirsStringArray2 = {"Vamo", "que", "vamo", "!"};
+---------------------------------
+utilizando
+
+int[] myArray = new int[4] {6, 9, 5, 8};
+
+Console.WriteLine(myArray[0]);
+// Saída: 6

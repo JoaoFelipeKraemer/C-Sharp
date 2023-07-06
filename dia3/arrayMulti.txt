@@ -1,0 +1,24 @@
+Arrays multidimensionais
+
+O que acontece se criarmos um Array em que o tipo que será armazenado é um Array também? 
+
+Resposta: O resultado vai ser um Array multidimensional.
+------------------
+Criar e declarar array multidimensional
+
+class PlayingWithArrays
+{
+  public static void muldiDimArrays()
+  {
+    int[,] multiDimensionalArray1 = new int[2, 3];
+  }
+}
+
+
+class PlayingWithArrays
+{
+  public static void muldiDimArrays()
+  {
+    int[,] multiDimensionalArray = { { 1, 2, 3 }, { 4, 5, 6 } };
+  }
+}
