@@ -1,0 +1,6 @@
+O q será aprendido:
+
+Estruturas de arrays
+Arrays multidimensionais
+Funções
+Exceções em C#
