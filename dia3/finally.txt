@@ -1,0 +1,64 @@
+A instrução finally é a última parte de um bloco try-catch e, caso esteja presente, sempre será executada.
+
+Estrutura try-catch-finally
+try
+{
+  // Código a ser executado
+}
+catch
+{
+  // Caso aconteça uma exceção no código dentro do bloco try, aqui vai ser requisitado!
+}
+finally 
+{
+  // Aqui sempre vai ser chamado
+}
+---------
+exemplo
+
+
+public bool VerifyProductValidity(int productId)
+{
+  Database db = new Database();
+  db.Open();
+  var product = db.GetProduct(productId);
+  db.Close();
+  return product.IsValid;
+}
+
+
+refatorando codigo acima com finally
+
+namespace Product;
+
+public class Product
+{
+    public bool VerifyProductValidity(int productId)
+    {
+        Database db = new Database();
+        try
+        {
+            db.Open();
+            
+            var product = db.GetProduct(productId);
+
+            if (product == null)
+            {
+                throw new NullReferenceException;
+            }
+
+            return product.IsValid;
+        }
+        catch(NullReferenceException ex)
+        {
+            Console.WriteLine(ex.Message)
+            throw
+        }
+        finally
+        {
+            db.Close();
+        }
+    }
+
+
+}

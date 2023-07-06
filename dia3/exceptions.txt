@@ -1,0 +1,100 @@
+
+public int DivideNumbers(int numberOne, int numberTwo) 
+{
+  return numberOne / numberTwo;
+}
+
+mas esse número for 0? Dispara uma exceção
+Exceção sem tratamento. System.DivideByZeroException: Tentativa de dividir por zero.
+------------------
+Instrução try-catch
+
+Quando ocorre uma exceção em C#, o sistema vai procurar a cláusula catch mais próxima
+para tratar essa exceção e, se possível, utilizá-la.
+------------------
+sintaxe
+
+
+try
+{
+  // Código a ser executado
+}
+catch
+{
+   // Caso aconteça uma exceção no código dentro do bloco try, aqui vai ser requisitado!
+}
+
+
+-------------------
+catch vazio
+
+catch
+{
+
+}
+
+Nesse caso, para manipulação de exceção, não é possível saber 
+o que causou o erro no bloco de código executado em try.
+-----------------------------
+
+catch com objeto do tipo Exception
+catch (Exception ex)
+{
+  Console.WriteLine($"Ocorreu um erro: {ex.Message}");
+}
+
+--------------------------------
+catch especificado
+
+catch  (DivideByZeroException ex)
+{
+
+}
+
+string[] chemicalProduct = new string[3];
+---------------------
+EXEMPLO
+
+try
+{
+ chemicalProduct[0] = "Cálcio";
+ chemicalProduct[1] = "Zinco";
+ chemicalProduct[2] = "Hidrazina";
+ chemicalProduct[3] = "Anilina"; 
+}
+catch (IndexOutOfRangeException ex) 
+{
+ Console.WriteLine("Erro Específico, sabemos exatamente o motivo do erro.");
+}
+catch (Exception ex)
+{
+ Console.WriteLine("Temos a mensagem, porém é um pouco incerto o que ocorreu.");
+}
+---------------
+Como as exceções são lançadas?
+
+THROW: A instrução throw deve indicar um valor do objeto Exception ou 
+uma classe derivada de Exception, como, por exemplo:
+
+throw new NullReferenceException();
+--------------------------
+
+public bool VerifyIsPartner(string tax)
+{
+  try
+  {
+   var partner = new PartnershipRepository().GetPartnerByTax(tax);
+
+   if (partner == null)
+   {
+    throw new NullReferenceException("Parceria não encontrada!");
+   }     
+  }
+  catch (NullReferenceException ex)
+  {
+   Console.WriteLine(ex.Message);
+   throw;
+  }
+
+  return true;   
+}

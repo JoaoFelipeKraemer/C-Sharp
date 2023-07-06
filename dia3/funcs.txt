@@ -1,0 +1,57 @@
+nivel de accessibilidade Retorno Nome (param)
+{
+    bloco de código
+}
+
+• Nível de acessibilidade: É opcional. Essa característica é responsável por garantir quem pode ou não acessar a função.
+
+ o nível de acessibilidade public significa que a função pode ser acessada de qualquer lugar do código;
+ o nível de acessibilidade private significa que a função é privada, só consegue ser acessada na mesma classe em que foi criada.
+ Caso não seja especificado o nível de acessibilidade, por padrão é definida como private.
+
+• Retorno: Campo Obrigatório. No retorno é indicado o tipo que a função irá retornar, e se irá retornar algo.
+exemplo:
+
+public double Calculate (int weight, int height)
+{
+    return weight / height * height
+}
+-----------------
+FUNÇÃO SEM Retorno
+Em funções sem retorno, a sintaxe se difere em seu tipo de retorno, e no seu escopo não é necessário o termo return
+
+
+public void SendEmail() 
+{
+  // Bloco de código que vai conter tudo que for necessário para o envio de um e-mail
+}
+------------------
+
+FUNÇÃO COM Retorno
+
+EXEMPLO:MAIORIDADE
+
+*retorna a idade
+public int CalculateAgeByYear(int yearOfBirth) 
+{     
+  return DateTime.Now.Year - yearOfBirth;
+}
+*retorna booleano se for maior de idade
+public bool ValidateComingOfAge(int age) 
+{
+  return age >= 18;
+}
+
+var age = CalculateAgeByYear(1989);
+var isOfLegalAge = ValidateComingOfAge(age);
+
+public void isMaior(bool legalAge) 
+{
+  if(legalAge == true)
+  {
+    Console.WriteLine("Maior, acesso permitido")
+  }
+  else {
+    Console.WriteLine("Acesso negado")
+  }
+}
