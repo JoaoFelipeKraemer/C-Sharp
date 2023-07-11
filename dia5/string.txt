@@ -1,0 +1,85 @@
+string name = "Preencher o nome";     
+
+ funções pertencentes da classe String, como:
+
+Concat() ->
+string textOne = "Você está aprendendo sobre ";
+string textTwo = "Strings em C#, ";
+string textThree = "e agora sabe concatenar textos utilizando a função Concat()!";
+
+string concatResult = string.Concat(textOne, textTwo, textThree);
+Console.WriteLine(concatResult);  
+
+-----------
+Split() -> 
+A função Split() retorna um array de strings, e essa separação em múltiplas strings ocorre de acordo 
+com um separador especificado por parâmetro.
+OBS:
+ Caso não seja passado nenhum argumento como separador na função Split(), por padrão o Split vai 
+ separar os espaços vazios encontrados na string como uma nova cadeia de caracteres.
+
+string emails = "email1@trybe.com;email2@trybe.com;email3@trybe.com";
+string[] arrayEmails = emails.Split(";");
+------------
+IndexOf() ->
+Procurar se um caracter existe em determinada string e retornar o seu index
+OBS:
+ retorna o index da primeira ocorrência  do tipo int, e caso o caracter que está sendo buscado
+ não seja encontrado, é retornado o valor -1
+
+string trybe = "Trybe";
+int index = trybe.IndexOf("y");
+RETORNO = 2
+OU
+
+string trybe = "Trybe";
+int index = trybe.IndexOf("s");
+RETORNO = -1
+OU
+"estamos dizendo para a função IndexOf() encontrar o caracter e a partir do index 6."
+string trybe = "I love Trybe";
+int index = trybe.IndexOf("e", 6);
+RETORNO = 11
+OU
+
+string trybe = "I love Trybe";
+int index = trybe.IndexOf("e", 13);
+exceção do tipo ArgumentOutOfRangeException será lançada.
+
+------------
+
+Contains() ->
+verificar se determinada string está contida em outra string ou em uma lista.
+O valor retornado dessa verificação é do tipo booleano, ou seja, true ou false.
+OBS:
+é case sensitive, ou seja, diferencia caracteres maiúsculos e minúsculos.
+
+valor recebido da pessoa usuária armazenado no argumento:
+ **string languageSearch = 
+
+List<string> languages = new List<string> 
+{
+ "c#",
+ "java",
+ "javascript",
+ "python"
+};
+
+bool languageExists = languages.Contains(languageSearch);
+if (languageExists) 
+{
+  Console.WriteLine("Essa linguagem existe no sistema");
+}
+else 
+{
+  Console.WriteLine("Essa linguagem não existe no sistema");
+}
+-----------
+Join() ->
+Essa função tem como responsabilidade concatenar uma coleção de valores em uma string.
+
+IEnumerable<int> listNumbers = Enumerable.Range(1, 10);
+string numbersText = string.Join(',', listNumbers);
+
+Quando forem atribuídas aspas simples '', significa que é um valor do tipo char.
+Quando o valor é indicado por aspas duplas "", estamos dizendo que é um valor do tipo string.
