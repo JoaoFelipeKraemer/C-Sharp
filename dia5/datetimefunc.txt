@@ -1,0 +1,126 @@
+Principais funções da DateTime
+
+A DateTime também oferece uma série de funções para ajudar a manipular os objetos 
+de momento de tempo, sendo as mais utilizadas:
+
+*.Add(TimeSpan value)
+soma um TimeSpan, positivo ou negativo, à data que chamou o método.
+TimeSpan representa um intervalo de tempo
+
+  public class DataUtil
+  {
+      public static void Main(string[] args)
+      {
+          var today = DateTime.Now;
+          var duration = new TimeSpan(36, 0, 0, 0);
+          var answer = today.Add(duration);
+
+          System.Console.WriteLine("Hoje é " +today.Day +"/" +today.Month +" - " +today.DayOfWeek);
+          System.Console.WriteLine("Daqui a 36 dias será "+answer.Day +"/" +answer.Month +" - " +answer.DayOfWeek);
+      }
+  }
+
+OBS:
+Vale lembrar que o TimeSpan adicionado pode ser negativo para calcular dias antecedentes a uma data:
+
+  public class DataUtil
+  {
+      public static void Main(string[] args)
+      {
+          var today = System.DateTime.Now;
+          var duration = new System.TimeSpan(-36, 0, 0, 0);
+          var answer = today.Add(duration);
+
+          System.Console.WriteLine("Hoje é " +today.Day +"/" +today.Month +" - " +today.DayOfWeek);
+          System.Console.WriteLine("36 atrás era "+answer.Day +"/" +answer.Month +" - " +answer.DayOfWeek);
+      }
+  }
+
+  DateTime possui diversas métodos Add para valores específicos. Olha só:
+
+.AddYears(int value): Adiciona uma quantidade de anos a uma data.
+.AddMonths(int value): Adiciona uma quantidade de meses a uma data.
+.AddDays(double value): Adiciona uma quantidade de dias a uma data.
+.AddHours(double value): Adiciona uma quantidade de horas a uma data.
+.AddMinutes(double value): Adiciona uma quantidade de minutos a uma data.
+.AddSeconds(double value): Adiciona uma quantidade de segundos a uma data.
+.AddMilliseconds(double value): Adiciona uma quantidade de milissegundos a uma data.
+
+*.Compare(DateTime t1, DateTime t2);
+
+O método estático .Compare() recebe duas DateTime como parâmetro,
+compara e retorna um valor número que representa qual data é anterior ou posterior, seguindo o critério:
+
+Retorno	Significado
+-1	A data t1 é anterior à t2
+0	A data t1 é igual à t2
+1	A data t1 é posterior à t2
+
+  public class DataUtil
+  {
+      public static void Main()
+      {
+          DateTime date1 = new DateTime(2010, 9, 1, 5, 0, 0);
+          DateTime date2 = new DateTime(2022, 8, 10, 12, 0, 0);
+
+          int result = DateTime.Compare(date1, date2);
+          string relationship;
+
+          if (result < 0) relationship = "é anterior à";
+          else if (result == 0) relationship = "è o mesmo que";
+          else relationship = "è posterior à";
+
+          Console.WriteLine("{0} {1} {2}", date1, relationship, date2);
+      }
+  }
+  RESPOSTA:   01/09/2010 05:00:00 é anterior à 10/08/2022 12:00:00
+  
+
+*.ToString()
+
+O método .ToString() converte o valor de um DateTime para uma string
+ equivalente utilizando os critérios padrões do C# para tal.
+   public class DataUtil
+  {
+      public static void Main()
+      {
+          DateTime date = new DateTime(2010, 9, 1, 5, 0, 0);
+
+          Console.WriteLine("A data é " +date.ToString());
+      }
+  }
+
+    A data é 01/09/2010 05:00:00
+OBS:
+
+-função WriteLine(), que é uma função de Console, invoca o método ToString()POR padrão
+
+-Por que você, pessoa desenvolvedora, usaria o .ToString(), então?
+
+-O .ToString() possui métodos com override que são bem úteis, como por exemplo:
+
+*.ToString(string? format)
+
+É possível passar por parâmetro um formato específico para a string de saída, vamos ver alguns:
+
+Formatos padrão: O C# oferece os seguintes formatos:
+ “d”, “D”, “f”, “F”, “g”, “G”, “m”, “o”, “R”, “s”, “t”, “T”, “u”, “U”, “y”;
+
+new DateTime(2008, 6, 15, 21, 15, 07);
+
+Formato	Saída
+“d”	6/15/2008
+“D”	Sunday, June 15, 2008
+“f”	Sunday, June 15, 2008 9:15 PM
+“F”	Sunday, June 15, 2008 9:15:07 PM
+“g”	6/15/2008 9:15 PM
+“G”	6/15/2008 9:15:07 PM
+“m”	June 15
+“o”	2008-06-15T21:15:07.0000000
+“R”	Sun, 15 Jun 2008 21:15:07 GMT
+“s”	2008-06-15T21:15:07
+“t”	9:15 PM
+“T”	9:15:07 PM
+“u”	2008-06-15 21:15:07Z
+“U”	Monday, June 16, 2008 4:15:07 AM
+“y”	June, 2008
