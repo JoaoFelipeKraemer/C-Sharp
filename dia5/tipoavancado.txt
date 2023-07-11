@@ -1,0 +1,140 @@
+Classes e Funções genéricas:
+possibilita criar classes e métodos que têm a especificação do seu tipo 
+adiada para o momento de declaração e uso delas.
+
+-------------------------------------
+Para tipos genéricos usamos o Parâmetro \<T>
+------------------------------------
+em C# só armazenam valores do mesmo tipo e que foram declaradas no início, como:
+int[] intArray = new int[1, 2, 3, 4, 5];
+
+Vamos criar uma lista genérica, onde quem usa pode escolher o tipo na hora que vai declarar essa
+ lista e ela funciona igual para qualquer tipo passado!
+
+--------------------------------
+*Primeiro vamos criar uma classe para nossa lista:
+public class GenericList
+{
+
+}
+----------------------------
+*Se eu quisesse instanciar essa lista, eu teria que usar:
+
+GenericList myList = new GenericList();
+-----------------------------------
+*vamos deixar essa lista generica com parametro <T>
+
+public class GenericList<T>
+{
+
+}
+---------------------------------------
+*agora posso isntancia-la das seguitnes formatos
+
+GenericList<int> list1 = new GenericList<int>();
+GenericList<string> list2 = new GenericList<string>();
+GenericList<SomeClass> list3 = new GenericList<SomeClass>();
+---------------------------------------------
+*Legal, e os métodos genéricos? Vamos criar um?
+
+public class GenericList<T>
+{
+    public void Add(T input) {... }
+}
+----------------------------------------------------
+*Criando um método para adicionar um elemento \<T> genérico para nossa lista, podemos usá-la:
+
+GenericList<int> list1 = new GenericList<int>();
+list1.Add(1);
+
+GenericList<string> list2 = new GenericList<string>();
+list2.Add("Olá");
+
+GenericList<SomeClass> list3 = new GenericList<SomeClass>();
+list3.Add(new SomeClass());
+-------------------------------------
+
+*Bora implementar para valer essa lista?
+
+public class GenericList<T>
+{
+    private class Node
+    {
+    }
+
+    public void Add(T input) {... }
+}
+---------------------------
+*implementado o Node:
+
+public class GenericList<T>
+{
+    private class Node
+    {
+        public T Value;
+        public Node? Next;
+
+        public Node(T t)
+        {
+            Value = t;
+            Next = null;
+        }
+    }
+
+    private Node Head;
+
+    public GenericList()
+    {
+        Head = null;
+    }
+
+    public void Add(T input) {... }
+}
+----------------------------------------
+
+*Também criamos um nó chamado Head para ser o primeiro nó da nossa lista,
+e ele irá sempre começar vazio, com null.
+
+Agora podemos implementar o método .Add():
+
+public class GenericList<T>
+{
+    private class Node
+    {
+        public T Value;
+        public Node? Next;
+
+        public Node(T t)
+        {
+            Value = t;
+            Next = null;
+        }
+    }
+
+    public Node Head;
+
+    public GenericList()
+    {
+        Head = null;
+    }
+
+    public void Add(T input) 
+    {
+        if (Head == null)
+        {
+            Head = new Node(input);
+            Console.WriteLine("Nó Head criado!");
+        }
+        else
+        {
+            //Encontra onde inserir o próximo nó na lista.
+            Node lastNode = Head;
+            while(lastNode.Next != null)   lastNode = lastNode.Next;
+
+            lastNode.Next = new Node(input);                        
+        }
+    }
+}
+
+Ele primeiro verifica se o nó Head está vazio. Se estiver, então iremos criá-lo primeiro; se não estiver, 
+vamos procurar a próxima posição válida para inserir o novo nó na lista.

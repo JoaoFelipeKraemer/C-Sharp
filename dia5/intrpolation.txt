@@ -1,0 +1,14 @@
+Interpolação de strings
+-> se resume no processo de inserir o valor de uma variável em parte de uma string.
+
+Utilizando a sintaxe de interpolação, é possível inserir variáveis no texto de uma string
+ comum e, dessa forma, o valor dessa variável vai ser colocado dentro da 
+ string no local em que foi inserido.
+
+
+string text = "Isso é uma string";
+
+string textString = "string";
+string text = $"Isso é uma {textString}";
+
+
