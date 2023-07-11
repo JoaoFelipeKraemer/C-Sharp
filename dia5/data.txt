@@ -1,0 +1,137 @@
+DATAS
+
+Trabalhar com datas e horários em qualquer linguagem de programação sempre é um
+ desafio quando é preciso lembrar as bibliotecas, métodos e formatos para isso, né! 😟
+
+No mundo .NET com C# temos uma forma bem mais clara de tratar 
+os momentos de tempo com a biblioteca DateTime.
+
+Momentos de tempo:
+ são um conjunto muito útil de informações sobre um ponto no tempo, e nele temos os seguintes campos:
+
+Data, composta por:
+Dia
+Mês
+Ano
+Horário, composto por:
+Horas
+Minutos
+Segundos
+Milissegundos
+Fuso Horário
+----------------------------------------
+A biblioteca DateTime:
+
+public class DataUtil
+{
+    public static void Main(string[] args)
+    {
+        var date = new DateTime(2022, 10, 2, 8, 35, 0);
+        Console.WriteLine(date.ToString());
+    }
+}
+
+ ano, dia, mês, hora, minuto e segundo definidos respectivamente
+usamos o ToString() para imprimir essa data.
+
+02/10/2022 08:35:00
+-----------------------------------
+Principais propriedades da DateTime
+
+*DateTime.Now
+
+Essa propriedade obtém e retorna uma instância da classe DateTime com os 
+campos configurados para o momento de tempo exato em que a propriedade foi chamada, 
+e expressa como a hora local.
+
+  public class DataUtil
+  {
+      public static void Main(string[] args)
+      {
+          var dataType = DateTime.Now;
+          Console.WriteLine(dataType.GetType());
+      }
+  }
+
+  TIPO de dataType é   System.DateTime
+
+    public class DataUtil
+  {
+      public string getTimeNow()
+      {
+          return "O momento de tempo atual é " +DateTime.Now;
+      }
+  }   
+.Today parecido com Now mas  retrata as Horas como 00:00:00
+
+
+*DateTime.Date
+
+Essa propriedade acessa o componente da data em uma instância da DateTime
+ que representa um momento de tempo e retorna uma nova instância de DateTime.
+
+  public class DataUtil
+  {
+      public static void Main(string[] args)
+      {
+          var date = new DateTime(2022, 10, 2, 8, 35, 0);
+          var dateOnly = date.Date;
+          Console.WriteLine(dateOnly.ToString());
+      }
+  }
+
+  02/10/2022
+
+*DateTime.Day
+
+Essa propriedade acessa o componente do dia em uma instância da DateTime que
+ representa um momento de tempo e retorna um valor inteiro entre 1 e 31.
+
+  public class DataUtil
+  {
+      public static void Main(string[] args)
+      {
+          var date = new DateTime(2022, 10, 2, 8, 35, 0);
+          var dayOnly = date.Day;
+          Console.WriteLine(dayOnly.ToString());
+      }
+  }
+
+  2
+
+* DateTime.Month
+
+Essa propriedade acessa o componente do mês em uma instância da DateTime que representa
+ um momento de tempo e retorna um valor inteiro entre 1 e 12.
+
+  public class DataUtil
+  {
+      public static void Main(string[] args)
+      {
+          var date = new DateTime(2022, 10, 2, 8, 35, 0);
+          var monthOnly = date.Month;
+          Console.WriteLine(monthOnly.ToString());
+      }
+  }
+  10
+
+*DateTime.Year
+
+Essa propriedade acessa o componente do ano em uma instância da DateTime que 
+representa um momento de tempo e retorna um valor inteiro entre 1 e 99999.
+
+  public class DataUtil
+  {
+      public static void Main(string[] args)
+      {
+          var date = new DateTime(2022, 10, 2, 8, 35, 0);
+          var yearOnly = date.Year;
+          Console.WriteLine(yearOnly.ToString());
+      }
+  }
+
+2022
+
+De forma similar, temos as propriedades .Hour, .Minute, .Second, .Millisecond e .DayOfWeek
+
+data = day/month/year hour/minute/seconds
