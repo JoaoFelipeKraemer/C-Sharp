@@ -1,0 +1,42 @@
+ Até aqui, você aprendeu que as propriedades são métodos especiais que funcionam 
+ como “campos inteligentes”. Além disso, já sabe a forma mais simples de utilizá-las,
+  por meio das propriedades autoimplementadas.
+===========================
+Getters: são métodos de acesso que utilizam a palavra-chave get para definir
+ formas de se retornar o valor de determinada propriedade.
+
+Setters: são métodos de acesso que utilizam a palavra-chave set para definir 
+formas de se modificar o valor de determinada propriedade.
+
+class Rocket
+{
+    int Fuel { get; set; }
+}
+
+class Rocket
+{
+    int _fuel;
+    int _maxFuel = 5000;
+
+    public int FuelAsPercentage
+    {
+        get { return _fuel * 100 / _maxFuel; }
+        set {
+            if (value > 100 || value < 0)
+                throw new ArgumentOutOfRangeException();
+
+            _fuel = (value * _maxFuel) / 100;
+        }
+    }
+}
+
+===========================================
+ Aviso: Lembre-se de que o getters e setters são métodos de acesso, ou seja, 
+ eles sempre vão possuir um comportamento ligado a um campo. 
+ Quando utilizamos as propriedades autoimplementadas, esse comportamento 
+ fica implícito porque segue o padrão, mas não deixa de existir.
+
+OBS:
+o valor passado para o setter é sempre representado pela chave value,
+ que funciona como se fosse um “parâmetro implícito”.
+

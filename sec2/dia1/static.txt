@@ -1,0 +1,50 @@
+Utilizando o modificador static
+o C# possui um modificador que possibilita a definição de estados 
+e comportamentos independentes de instâncias: o static.
+
+Podemos utilizar esse modificador para definir membros que são inerentes à própria classe,
+ e não a uma instância específica, ou mesmo para definir classes inteiras que não são 
+ capazes de gerar instâncias, contendo métodos e propriedades cujo valor/comportamento 
+ independe do contexto em que sejam invocados.
+
+Anota aí ✏️: As classes estáticas não são instanciáveis, ou seja, não é possível
+ usar a chave new ou a sintaxe de inicialização de objetos para criar uma variável
+  do tipo da classe. Para acessar os seus membros, devemos utilizar a própria classe!
+
+-----------------------------------------------------------
+EX:
+
+public static class Trybe
+{
+    public static string[] students = { "Luiza", "Bruno", "Patrícia", "Tiago" };
+
+    public static string[] Students
+    {
+        get { return students; }
+        set { students = value; }
+    }
+
+    public static int NumberOfStudents
+    {
+        get { return students.Length; }
+    }
+
+    public static bool IsStudent(string name)
+    {
+        return Array.Exists(students, s => s == name);
+    }
+
+    public static void PrintStudents()
+    {
+        Console.WriteLine(string.Join(", ", students));
+    }
+};
+
+Os métodos estáticos possuem o modificador static e, assim como os demais membros estáticos,
+ estão associados à classe onde são declarados como um todo, e não a uma instância dessa classe.
+
+Anota aí ✏️: Métodos estáticos são as ferramentas que servem de base para boa parte das
+ bibliotecas de utilidades, como, por exemplo, a System.Math e a System.Convert!
+---------------------------------------------------------------
+
+Métodos estáticos em classes instanciáveis 

@@ -1,0 +1,61 @@
+toda instância de uma classe é um objeto, sendo que a 
+classe que lhe deu origem é a respectiva generalização!
+
+O conceito de objeto, na programação, não é limitado à sua materialidade
+frente a uma abstração que o generaliza. Temos também, dentro do conceito de objeto, a seguinte definição:
+
+Um objeto é uma entidade com estado e comportamento
+
+No caso do C#
+ comportamento dos objetos é definido nos métodos das classes
+ estado é determinado pelos valores dos seus campos e propriedades.
+
+Com o uso de propriedades, podemos pensar em diversas
+formas de definir um estado para um objeto de determinada classe.
+
+EX:
+class Rocket
+{
+  string Name { get; set; }
+
+  public Rocket(string name)
+  {
+    Name = name;
+  }
+}
+#INSTANCIAS
+
+var firstRocket = new Rocket("Apollo 11");
+var secondRocket = new Rocket("Falcon 9");
+
+class Rocket
+{
+  string Name { get; set; }
+  int Fuel { get; set }
+  decimal Price { get; set; }
+
+  public Rocket(string name, decimal price)
+  {
+    Name = name;
+    Fuel = 0;
+    Price = price;
+  }
+}
+
+note q Fuel é por default 0
+É possível fazermos a atribuição de propriedades default de maneira ainda mais simples,
+sem precisar atribuí-las em um construtor
+
+
+class Rocket
+{
+  string Name { get; set; }
+  int Fuel { get; set; } = 0;
+  decimal Price { get; set; }
+
+  public Rocket(string name, decimal price)
+  {
+    Name = name;
+    Price = price;
+  }
+}
