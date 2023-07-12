@@ -1,0 +1,99 @@
+Para criar a maior parte das propriedades, podemos simplesmente omitir a implementação dos getters e setters:
+
+class Person
+{
+    string Name { get; set; }
+}
+
+PORÉM: a possibilidade de definir esses comportamentos de forma automática
+esconde uma implementação padrão dos getters e setters gerada automaticamente pelo compilador do C#.
+
+Essa implementação pode ser definida, de forma explícita, usando a sintaxe completa:
+
+class Person
+{
+    string _name;
+
+    public string Name
+    {
+        get { return _name; }
+        set { _name = value; }
+    }
+}
+Nas duas formas que declaramos, a propriedade Name possui exatamente o mesmo comportamento
+
+------------------------------------------------------------------
+
+Usando métodos para instanciar classes
+
+Já aprendemos como instanciar novos objetos a partir dos métodos construtores
+ das suas próprias classes, definindo nesses construtores as formas pelas
+  quais seriam feitas as associações das suas propriedades.
+
+esse não é o único modo para criar novas instâncias de uma classe com a atribuição de valores
+específicos às suas propriedades
+
+class Bakery
+{
+    public Bread fabricateBread(int weight)
+    {
+        return new Bread
+        {
+            Weight = weight,
+            Type = "White"
+        };
+    }
+
+    public Cake fabricateChocolateCake(string size)
+    {
+        return new Cake
+        {
+            Size = size,
+            Flavour = "Chocolate"
+        };
+    }
+}
+
+class Bread
+{
+    string _type = "";
+
+    public int Weight { get; set; }
+    public string Type
+    {
+        get { return _type; }
+        set
+        {
+            if (value != "White" && value != "Wheat")
+                throw new ArgumentException("Invalid bread type");
+
+            _type = value;
+        }
+    }
+}
+
+class Cake
+{
+    public string Size { get; set; }
+    public string Flavour { get; set; }
+}
+
+
+Como você pode ver, a nossa Bakery possui métodos que são capazes de instanciar tanto objetos
+ da classe Bread quanto da classe Cake, mesmo não sendo métodos construtores.
+  São eles:
+O método FabricateBread() é capaz de instanciar um objeto da classe Bread e 
+designar suas propriedades diretamente;
+
+O método FabricateChocolateCake(), do mesmo modo, pode fabricar deliciosos bolos de chocolate
+ como instâncias da classe Cake.
+
+--------------------------------------------------------------
+DUVIDA:
+
+Mas como isso é possível, se nem Bread nem Cake possuem construtores
+ que fazem a associação dos valores das suas propriedades?
+
+Os métodos de Bakery utilizam uma ferramenta chamada object initializer (ou inicializador de objetos),
+ para permitir que façamos a instanciação de objetos com a atribuição de valores das suas propriedades
+  mesmo sem invocar diretamente o construtor da classe que os abstrai.
