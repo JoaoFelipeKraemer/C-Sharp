@@ -115,3 +115,21 @@ enum PaymentType
     // Debit tem valor 1
     Debit = 1
 }
+
+class Order
+{
+    public PaymentType PayType
+}
+
+Order myOrder = new Order();
+
+myOrder.PayType = PaymentType.Credit;
+
+enum PaymentType
+{
+    Credit,
+    Debit
+}
+
+Console.WriteLine("Crédito: " + (int)PaymentType.Credit);
+Console.WriteLine("Débito: " + (int)PaymentType.Debit);
