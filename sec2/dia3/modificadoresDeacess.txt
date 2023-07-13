@@ -1,0 +1,50 @@
+Modificadores de Acesso
+
+O escopo em códigos
+
+
+Escopo pode ser definido como o local em que uma variável, 
+função ou classe é visível e pode ser referenciada!
+
+
+Os modificadores de acesso do C#
+SINTAXE:
+\<Modificador> \<Declaração de tipo, atributo, método ou classe>
+
+*public
+
+class MyClass
+{
+    public string example = "uma variável publica."; 
+}
+Um item público no C# significa que qualquer parte do código pode referenciaR
+ esse item se estiver no seu escopo.
+
+------------------------------------------------------------------
+*protected
+
+class MyClass
+{
+    protected string example = "um atributo protegido.";
+}
+
+
+O modificador protected permite o acesso e referência para itens na mesma
+ classe ou em classes herdeiras.
+
+
+----------------------------------------------------------------
+*private
+
+class MyClass
+{
+    string example = "um atributo privado."; 
+}
+
+Ela será naturalmente definida como private pelo compilador do .NET.
+
+O modificador private permite o acesso para itens apenas na mesma classe.
+
+Utilizamos o modificador, seguindo a sintaxe:
+
+private string example = "um atributo privado."
