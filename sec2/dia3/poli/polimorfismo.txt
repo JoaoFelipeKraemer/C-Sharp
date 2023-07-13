@@ -1,0 +1,49 @@
+Polimorfismo
+
+ quando falamos em orientação a objetos, estamos falando de um paradigma no qual, 
+ essencialmente, quase toda a lógica da aplicação é encapsulada em objetos criados a partir de abstrações.
+
+ objetos são entidades que encapsulam a lógica de uma abstração, as mensagens são a forma 
+ pela qual os objetos podem se comunicar com o resto da aplicação.
+
+
+ O polimorfismo é a possibilidade de que mais de uma abstração possa responder a uma mesma mensagem, 
+ com implementações e retornos independentes entre si.
+
+ Em resumo, polimorfismo é o que temos quando objetos de tipos diferentes podem ser utilizados no mesmo contexto,
+ sem que isso gere problemas de compatibilidade.
+
+ public interface Player
+{
+    public void Play(string mediaName);
+}
+
+
+public class AudioPlayer
+{
+    public IPlayer Player { get; set; }
+
+    public void MusicPlayer(IPlayer player)
+    {
+        Player = player;
+    }
+
+	public void PlaySong(string songName)
+	{
+	    Player.Play(songName)
+	}
+
+	public void PlayPodcast(string podcastName)
+	{
+	    Player.Play(podcastName)
+	}
+}
+
+Agora podemos utilizar, em conjunto com o nosso player, qualquer objeto que implemente
+ a interface IPlayer e, portanto, seja capaz de receber a mensagem Play(string mediaName)
+  e reproduzir a mídia que passamos como string.
+
+
+  Podemos, por exemplo, criar as classes BluetoothPlayer : IPlayer e Amplifier : IPlayer 
+  e utilizá-las no mesmo contexto, pois ambas poderão receber a mesma mensagem Play.
+

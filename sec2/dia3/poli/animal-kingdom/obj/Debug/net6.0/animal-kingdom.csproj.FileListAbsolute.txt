@@ -1,0 +1,15 @@
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/bin/Debug/net6.0/animal-kingdom
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/bin/Debug/net6.0/animal-kingdom.deps.json
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/bin/Debug/net6.0/animal-kingdom.runtimeconfig.json
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/bin/Debug/net6.0/animal-kingdom.dll
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/bin/Debug/net6.0/animal-kingdom.pdb
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/obj/Debug/net6.0/animal-kingdom.csproj.AssemblyReference.cache
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/obj/Debug/net6.0/animal-kingdom.GeneratedMSBuildEditorConfig.editorconfig
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/obj/Debug/net6.0/animal-kingdom.AssemblyInfoInputs.cache
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/obj/Debug/net6.0/animal-kingdom.AssemblyInfo.cs
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/obj/Debug/net6.0/animal-kingdom.csproj.CoreCompileInputs.cache
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/obj/Debug/net6.0/animal-kingdom.dll
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/obj/Debug/net6.0/refint/animal-kingdom.dll
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/obj/Debug/net6.0/animal-kingdom.pdb
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/obj/Debug/net6.0/animal-kingdom.genruntimeconfig.cache
+/home/joao/trybe-exercicios/05-C-sharp/sec2/dia3/poli/animal-kingdom/obj/Debug/net6.0/ref/animal-kingdom.dll
