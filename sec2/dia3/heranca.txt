@@ -1,0 +1,34 @@
+Herança
+
+ a herança para se estabelecer uma relação entre duas classes 
+ de modo a ter uma melhor organização do código.
+
+*Enquanto a composição pressupõe uma relação de contenedor/conteúdo, a herança,
+por sua vez, estabelece uma relação de hierarquia entre duas classes, de modo que
+uma classe mais específica, chamada comumente derivada ou subclasse, receba 
+de forma automática todos os métodos e propriedades de uma classe mais geral,
+também chamada base ou superclasse, sem precisar defini-los novamente.
+
+sintaxe <ClasseDerivada> : <ClasseBase>
+
+ex:
+
+public class Car : Vehicle
+{
+}
+
+O problema da herança
+
+*Nesse ponto, o principal problema da herança é a sua transitividade, ou seja, 
+sua capacidade de passar os métodos e características desde a classe base por
+ diversos níveis.quando utilizamos a herança da forma errada, acabamos gerando
+ cadeias hereditárias muito grandes, cuja complexidade pode crescer facilmente
+ caso não tomemos cuidado
+ ------------------------------
+
+ Utilizando herança para especialização
+
+ Se a mera reutilização de código não é razão suficiente para se utilizar a herança, 
+ temos casos em que há a necessidade de especialização de uma classe.
+  Nesses casos, quando uma classe é um subtipo da classe mais genérica, faz todo sentido utilizar a herança.
+

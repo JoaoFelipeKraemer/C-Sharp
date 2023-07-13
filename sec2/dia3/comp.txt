@@ -1,0 +1,20 @@
+Composição
+
+-As classes são as unidades fundamentais do código orientado a objetos
+falta é entender a forma como elas se relacionam entre si
+
+conceito que nos  permite definir que uma classe mais 
+complexa é composta por outras classes, em regra, mais simples
+
+
+O QUE É COMPOSIÇÃO :
+
+*Para entender como funciona a composição, basta estabelecermos uma relação
+ de “posse” ou “conteúdo” entre dois objetos,
+  um mais complexo e abrangente e outro que faz parte dele e 
+  tem uma função mais delimitada dentro do todo
+
+PRINCIPAL CARACTERÍSTICA:
+
+ utilizar a composição para reutilizar lógica entre classes diferentes sem repetir código
+ e, de quebra, reduzir a complexidade de classes muito acopladas

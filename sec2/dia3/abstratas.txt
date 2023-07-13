@@ -1,0 +1,63 @@
+Classes abstratas
+
+ as classes estáticas não são os únicos tipos de classe que não são instanciáveis.
+ No C#, temos também as classes abstratas, que são aquelas que não implementam 
+ todos os seus métodos e que, ao invés de serem implementadas diretamente,
+ servem como ponto de partida para classes derivadas que, por sua vez, serão instanciadas.
+
+ Quando uma classe herda de uma classe abstrata, ela não herda apenas 
+ funcionalidades através de métodos já implementados, mas também herda, 
+ através de métodos abstratos, diretrizes de implementação,
+  que definem apenas o formato das mensagens que a classe herdeira deve ser capaz de receber.
+
+  ex:
+
+
+  public abstract class Animal
+{
+    public int Age { get; set; }
+    public abstract string EatingHabits { get; set; }
+    public abstract string Habitat { get; set; }
+
+    public abstract void Feed();
+    public abstract void Move();
+
+    public void Sleep()
+    {
+        Console.WriteLine("Zzzz");
+    }
+}
+
+public class Dog : Animal
+{
+    public override string EatingHabits { get; set; } = "Carnivore";
+    public override string Habitat { get; set; } = "Human homes";
+
+    public override void Feed()
+    {
+        Console.WriteLine("Feeding the dog");
+    }
+    public override void Move()
+    {
+        Console.WriteLine("Dog is walking");
+    }
+
+    public void Bark()
+    {
+        Console.WriteLine("Woof!");
+    }
+}
+
+public void FeedAnimal(Animal animal)
+{
+    animal.Feed();
+}
+
+public void FeedDog()
+{
+    Dog dog = new Dog();
+    FeedAnimal(dog);
+}
+
+O exemplo acima mostra uma situação bem comum, em que as classes abstratas
+ servem para definir contextos de polimorfismo cujas subclasses são intercambiáveis entre si.

@@ -1,0 +1,62 @@
+Interfaces
+Na programação orientada a objetos, é comum que precisemos compor uma classe com um objeto
+ de cuja implementação não temos conhecimento.
+
+ uma estrutura intermediária, que nos diga quais os elementos mínimos
+  que essa abstração deverá ter para ser válida, mas que não se preocupe em implementá-la diretamente.
+
+uma espécie de “contrato” que definirá quais comportamentos mínimos o objeto que iremos utilizar
+ deve definir para poder ser utilizado naquele local.
+
+ SINTAXE:
+ interface IGreeter
+{
+    void SayGreeting(string greeting);
+}
+
+public interface IStartable
+{
+    void Start()
+    {
+        Console.WriteLine("Item started");
+    }
+}
+
+Só é possível acessar a implementação padrão de um método de uma interface em uma referência à própria
+ interface, não a um tipo específico, mesmo que esse tipo a implemente
+
+
+public class Engine : IStartable
+{
+}
+
+
+IStartable engine = new Engine();
+engine.Start();
+
+Implementação de múltiplas interfaces
+
+
+Além de poder implementar métodos por padrão, outra característica importante das interfaces é 
+que várias delas podem ser implementadas ao mesmo tempo por um só objeto.
+
+Essa capacidade de implementação múltipla advém do fato de que as interfaces
+ não definem uma cadeia hereditária, apenas um conjunto de propriedades
+  e/ou comportamento. Assim, por exemplo, podemos ter duas interfaces,
+   IStartable e IStoppable, que sejam implementadas na mesma classe Engine:
+
+public interface IStartable
+{
+    void Start();
+}
+
+public interface IStoppable
+{
+    void Stop();
+}
+
+public class Engine : IStartable, IStoppable
+{
+    public void Start() => Console.WriteLine("Engine started!");
+    public void Stop() => Console.WriteLine("Engine stopped!");
+}

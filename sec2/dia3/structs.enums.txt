@@ -1,0 +1,117 @@
+Structs, Enums e estruturas avançadas
+
+Organizando Tipos em C#
+Namespace é uma forma de organizar tipos definidos no seu projeto, como classes,
+ structs, interfaces e enums em um mesmo conjunto.
+
+ Organizando tipos em um mesmo conjunto, podemos definir domínios específicos 
+ em uma aplicação, facilitando o processo de encontrar tipos ou utilizá-los
+  em diferentes partes do sistema. Essa forma de organização é muito utilizada em C#
+   e até mesmo pela framework .NET.
+-----------------------------------------------------------------------------
+   namespace MyNamespace
+{
+    public class Car
+    {
+        // Código da minha classe Car
+    }
+}
+
+var myCar = new MyNamespace.Car();
+------------------------------------------------------------------------
+using MyNamespace;
+
+var myCar = new Car();
+------------------------------------------------------------------------------------------------
+Structs, as classes simplificadas em C#
+
+
+Structs são estruturas de dados em C# onde é possível
+ criar objetos de forma parecida com uma class, porém simplificada.
+
+ Em C#, temos duas categorias de tipos de variáveis,
+  os Tipos de valor 
+  os Tipos de referência.
+----------------------------------------------------------------------
+Tipos de valores são os tipos de variáveis que possuem o seu valor armazenado diretamente,
+ ou seja, a variável em si é aquele valor que ela representa e não uma referência para o 
+ valor em outra parte da memória.
+ 
+Exemplos de tipos de valores: int, float, double, char, bool.
+--------------------------------------------------------------------------------
+Tipos de referência são os tipos que armazenam uma referência ao seu valor
+ e não o valor propriamente dito, e isso tem consequências importantes.
+
+ Exemplo duas variáveis de tipo de referência podem se referenciar
+  a um mesmo valor armazenado na memória.
+  
+ Exemplos de tipos de referência são: classes, interfaces, string, Action.
+
+
+ Structs são tipos de valor e não referência, tornando então possível criar uma 
+ espécie de “classe” simplificada com membros e métodos, e ainda assim armazenar sua instância como valor.
+
+
+ Utilizando Structs
+
+ Vamos criar uma estrutura que represente uma coordenada geográfica 
+ e usar struct para isso.
+  Coordenadas geográficas são compostas por dois valores, latitude e longitude. 
+  Então vamos primeiro definir a nossa estrutura com o nome Coordinate e vamos 
+  criar duas propriedades:
+  double latitude 
+  double longitude 
+
+struct Coordinate
+{
+    public double Latitude;
+    public double Longitude;
+}
+
+struct Coordinate
+{
+    public double Latitude;
+    public double Longitude;
+
+    public Coordinate(double latitude, double longitude)
+    {
+        Latitude = latitude;
+        Longitude = longitude;
+    }
+}
+
+OBS: Estruturas também possuem modificadores de acesso como public, private e protected,
+ assim como classes, e funcionam da mesma forma.
+
+
+// someLocation irá inicializar com os valores de latitude e longitude fornecidos
+Coordinate someLocation = new Coordinate(-19.9222072, -43.9339879);
+
+// anotherLocation irá inicializar com os valores de latitude e longitude iguais a 0
+Coordinate anotherLocation = new Coordinate();
+
+Perceba que, mesmo não existindo um construtor explícito para Coordinate
+ que não receba nenhum parâmetro, é possível realizar a instanciação,
+  justamente pelo fato de existirem. 
+  Isso é possível porque essa struct contém apenas propriedades que possuem um valor inicial padrão, 
+  no caso double. Como o valor padrão de double é 0, anotherLocation será instanciado 
+  com Latitude e Longitude igual a 0.
+
+--------------------------------------------------------
+Enum
+
+Enums são estruturas de dados em C# que são utilizadas para melhorar a legibilidade do código construído
+
+podemos agrupar várias constantes nomeadas em um novo tipo, como se pertencessem a um mesmo grupo.
+
+Exemplo:
+
+
+enum PaymentType
+{
+    // Credit tem valor 0
+    Credit = 0,
+
+    // Debit tem valor 1
+    Debit = 1
+}
