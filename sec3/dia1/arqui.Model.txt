@@ -1,0 +1,21 @@
+MODEL 
+A Model é uma camada que fica responsável por cuidar dos dados.
+
+É nessa camada que implementamos toda a parte responsável por realizar
+ a conexão e acesso ao banco de dados, seja para ler, salvar, atualizar ou excluir dados da aplicação.
+
+*No ASP.NET, cada Model é uma classe que representa uma entidade do nosso banco e apresenta 
+os dados em forma de propriedades públicas.
+
+using System;
+
+namespace TrybeApp.Models
+{
+    public class TrybeStudent
+    {
+      public int Id { get; set; }
+    	public string Name { get; set;  }
+    	public int Age { get; set;  }
+    	public int ClassNumber { get; set;  }
+    }
+}
