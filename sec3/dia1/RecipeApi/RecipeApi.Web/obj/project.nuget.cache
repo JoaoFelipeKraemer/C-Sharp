@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "M6u8UONyjfjkt+n5QKfcZmCrYOG2poQpxBFWiLWZmin2ezQtLak384Cs4SxL4DRlHv+mIEj7TzliKGziYtDA/A==",
+  "success": true,
+  "projectFilePath": "/home/joao/trybe-exercicios/05-C-sharp/sec3/dia1/RecipeApi/RecipeApi.Web/RecipeApi.Web.csproj",
+  "expectedPackageFiles": [
+    "/home/joao/.nuget/packages/jsonflatfiledatastore/2.4.2/jsonflatfiledatastore.2.4.2.nupkg.sha512",
+    "/home/joao/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
+    "/home/joao/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/joao/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/joao/.nuget/packages/newtonsoft.json/13.0.2/newtonsoft.json.13.0.2.nupkg.sha512",
+    "/home/joao/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/home/joao/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/home/joao/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/home/joao/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
