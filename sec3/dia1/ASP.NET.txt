@@ -1,0 +1,26 @@
+ O ASP.NET vem para tornar mais simples a tarefa de criar, debugar e fazer o deploy de aplicações web.
+ 
+ Fazendo uma analogia, é como se o .NET fosse uma caixa de ferramentas, e o ASP.NET, uma de seus ferramentas.
+
+O ASP.NET é o sucessor do ASP (Active Server Pages), também chamado de ASP Clássico.
+
+-----------------------------------------------------------
+
+ASP.NET Core
+
+*Assim como o .NET Core, que é uma multiplataforma, o ASP.NET Core nos possibilita desenvolver e subir nossa
+ aplicações não somente em Windows, mas também em Linux e MacOS.
+----------------------------------------------------------
+
+Iniciando pela linha de comando 
+*o comando dotnet new(ou dotnet new -o nome-da-pasta) é utilizado para criar novas aplicações dentro
+ da plataforma .NET, com base em um template de aplicação.
+
+*Cria uma aplicação Web com arquitetura MVC:
+dotnet new mvc
+
+*Cria uma nova aplicação web:
+dotnet new webapp
+
+*Cria uma API:
+dotnet new webapi
