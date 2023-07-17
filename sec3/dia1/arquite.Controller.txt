@@ -1,0 +1,30 @@
+CONTROLLERS 
+
+é a porta de entrada das aplicações MVC, pois é responsável por receber as requisições
+que chegam no servidor. É nessa camada que acionamos a Model para interagir
+com o banco de dados ou chamamos funções da camada Service para validação das nossas regras de negócios.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+
+namespace TrybeApp.Controllers
+{
+    public class StudentController : Controller
+    {
+        var studentsList = new List<Student>() { 
+            new Student() { Id = 1, Name = "John", Age = 18, ClassNumber = 8 } ,
+            new Student() { Id = 2, Name = "Steve",  Age = 21, ClassNumber = 8 } 
+        };
+        public IActionResult Index()
+        {
+            // recuperar do banco aqui
+            return View("StudentsView", studentsList); // Aqui é a view que será retornada
+        }
+    }
+}
+
+OBS:
+: Uma Controller nunca deve interagir diretamente com o banco de dados,
+ mas sim usar a Model para acesso e manipulação desse banco.

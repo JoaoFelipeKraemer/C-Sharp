@@ -1,0 +1,19 @@
+ASP.NET
+Arquitetura MVC
+Métodos HTTP
+Testes em APIs
+
+* ASP.NET é um framework que permite a criação de aplicativos web escaláveis e de alta performance.
+Ele fornece recursos para desenvolvedores criarem aplicações web complexas, como suporte a autenticação
+e autorização, gerenciamento de sessões e integração com banco de dados
+
+* A arquitetura MVC (Model-View-Controller) é um padrão de projeto que divide a aplicação em três
+componentes principais: modelo, visualização e controle.
+
+*Os métodos HTTP definem a ação a ser executada em um recurso, como obter, atualizar ou excluir um objeto.
+
+
+* Por fim, os testes em APIs são cruciais para garantir a qualidade do software. Eles permitem que
+os desenvolvedores verifiquem se as APIs estão funcionando conforme o esperado e corrijam problemas
+antes que eles cheguem aos usuários finais.
+

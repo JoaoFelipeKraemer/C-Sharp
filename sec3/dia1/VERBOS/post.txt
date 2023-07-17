@@ -1,0 +1,80 @@
+Operações de criação (POST)
+
+namespace TestApi.Core;
+
+public class Client
+{
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public decimal AccountBalance { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+}
+---------------------------------------------------------
+poderemos utilizar essa classe para modelar o tipo de informação que queremos
+guardar no servidor. Todavia, antes de fazer isso, precisamos criar um objeto
+específico apenas com as informações que receberemos na requisição,
+afinal não será o cliente quem determinará o id ou a data de criação do objeto, e sim o servidor:
+
+
+----------------------------------------------------------
+public class ClientRequest
+{
+    public string? Name { get; set; }
+    public decimal AccountBalance { get; set; }
+
+    public Client CreateClient(int id)
+    {
+        return new Client
+        {
+            Id = id,
+            Name = Name,
+            AccountBalance = AccountBalance,
+            CreatedAt = DateTime.Now,
+            UpdatedAt = DateTime.Now
+        };
+    }
+}
+
+-------------------------------------
+Através desse objeto, poderemos receber na requisição um objeto
+ que possua apenas as informações de nome e balanço da conta 
+ e que seja capaz de criar um objeto do tipo Client com as informações faltantes.
+  Agora já podemos criar nosso controller com um método POST:
+
+
+-----------------------
+[ApiController]
+[Route("clients")]
+public class ClientController : ControllerBase
+{
+    private static List<Client> _clients = new();
+    private static int _nextId = 1;
+
+    [HttpPost]
+    public ActionResult Create(ClientRequest request)
+    {
+        var client = request.CreateClient(_nextId++);
+        _clients.Add(client);
+
+        return StatusCode(201, client);
+    }
+}
+-----------------------
+temos aqui dois campos estáticos:
+
+_clients: serve para guardar os clientes que enviarmos através do controller;
+_nextId: serve para controlar a atribuição de Ids únicos na nossa aplicação,
+ evitando Ids repetidos mesmo que alguma entrada seja deletada.
+
+
+O método em si possui o atributo HttpPost, que define que esse é o tipo de
+requisições que será recebido, e retorna como resposta o tipo ActionResult. 
+Esse tipo representa o resultado de uma requisição feita pelo browser que será retornada pelo servidor.
+
+*O ASP.NET suporta diversos tipos de respostas derivadas de ActionResult, dentre os quais:
+
+*ViewResult - Representa uma resposta em HTML.
+*EmptyResult - Representa uma resposta vazia.
+*JsonResult - Representa uma resposta em formato JSON.
+*ContentResult - Representa uma resposta em formato de texto simples.

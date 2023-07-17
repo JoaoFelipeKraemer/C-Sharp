@@ -1,0 +1,49 @@
+ara isso, primeiro precisamos criar uma aplicação do tipo webapi, a partir da qual poderemos
+ criar nossas classes, e uma aplicação do tipo xunit
+
+mkdir RecipeApi
+cd RecipeApi
+dotnet new webapi -o RecipeApi.Web
+dotnet new xunit -o RecipeApi.Test
+dotnet new sln
+dotnet sln add ./RecipeApi.Web/RecipeApi.Web.csproj
+dotnet sln add ./RecipeApi.Test/RecipeApi.Test.csproj
+cd RecipeApi.Test
+dotnet add reference ../RecipeApi.Web/RecipeApi.Web.csproj
+
+-----------------------------------------
+Agora que você está com o seu projeto criado, vamos à configuração inicial!
+
+ O ponto de entrada da sua API, a partir do qual o host é configurado e começa a rodar,
+ é o arquivo Program.cs. Vamos dar uma olhada nele:
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+
+------------------------
+
+Para configurar o DataStore, precisamos primeiro instalar
+ a biblioteca na pasta do projeto RecipeApi.Web usando o comando dotnet add package JsonFlatFileDataStore.

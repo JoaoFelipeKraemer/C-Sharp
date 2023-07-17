@@ -1,0 +1,64 @@
+Operações de leitura (GET)
+Vamos ver a anatomia de um controller que faz uma requisição simples de leitura no ASP?
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace TestApi.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class HelloWorldController
+{
+    [HttpGet]
+    public string Get() => "Hello world!";
+}
+----------------------------------
+
+Agora vamos analisar os pontos principais da definição desse controller:
+
+*  using Microsoft.AspNetCore.Mvc;
+
+-Mesmo que não estejamos construindo um projeto com a arquitetura MVC, os atributos
+ApiController, Route() e HttpGet, que são utilizados para fazer com que nossa classe
+funcione como um controller, são parte do namespace Microsoft.AspNetCore.Mvc,
+então precisamos utilizá-lo aqui.
+
+*  [ApiController]
+
+-O atributo ApiController tem como função indicar para o compilador que uma classe tem como função 
+servir respostas às requisições HTTP feitas para a API.
+-Com isso, a utilização desse atributo permite que a aplicação identifique, de forma inteligente,
+se as informações enviadas para a api vêm do body, do header ou de queries na própria url
+
+*  [Route("[controller]")]
+
+-O atributo Route() tem como função indicar qual a rota pela qual o controller em questão é acessado.
+ Se utilizássemos uma rota Route("ServiceOne"), por exemplo, poderíamos fazer
+ requisições utilizando a url https://<endereço>/ServiceOne.
+ex:
+
+  public class HelloWorldController
+  {
+  }
+
+-É a classe que utilizamos para definir o controller. Por convenção, sempre definimos 
+essa classe com o padrão <NomeDoController>Controller,
+o que nos permite usar o Route() com o token replacement.
+
+*  [HttpGet]
+
+-O atributo HttpGet é um dos atributos que definem os tipos de requisição aos quais os
+métodos poderão responder, baseado nos verbos HTTP.
+No caso, como estamos fazendo uma chamada de leitura simples, usamos o HttpGet,
+mas existem atributos para todos os tipos de verbo.
+
+  public string Get() => "Hello world!";
+
+-O método que irá ser executado quando fizermos uma chamada HTTP para a rota do controller. 
+É possível definir mais de um método dentro do mesmo controller que responde ao 
+mesmo tipo de requisição, mas para isso precisamos, além de usar o atributo Route() no controller, 
+utilizá-lo novamente no método novo, o que criará uma sub-rota para esse método dentro do controller.
+
+-exemplo
+definir um novo método public string GetHelloTrybe() => "Hello Trybe!";
+com os atributos [HttpGet] e Route("2"), o que fará com que tenhamos duas rotas

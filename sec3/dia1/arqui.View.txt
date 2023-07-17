@@ -1,0 +1,32 @@
+VIEW 
+A Camada de View, também conhecida por camada de visualização, ou simplesmente View,
+ é a responsável pelo que será visto pela pessoa usuária.
+
+Ela recebe os dados que a Controller buscou com a Model e monta a página que será 
+enviada ao navegador. Cada view é equivalente a uma página web.
+
+*No ASP.NET MVC, por padrão, é utilizado o recurso de páginas Razor, uma sintaxe
+de criação de páginas web dinâmicas com HTML e C#, que possui a extensão .cshtml.
+As Views ficam armazenadas em uma pasta chamada Views, na raiz da aplicação, e cada uma
+leva o nome da sua Controller correspondente.
+
+*No ASP.NET, existem diferentes formas de trafegar os dados entre a Controller e uma View.
+ Veja como ficaria uma View que recebesse os dados da pessoa estudante por meio da viewData
+  e os exibisse na página:
+
+  @{
+    ViewData["Title"] = "Página da Pessoa Estudante";
+}
+
+<div>
+    <h1>Trybe</h1>
+    <p>Olá, boas vindas @ViewData["StudentName"]</p>
+    <p>Você faz parte da Turma @ViewData["ClassNumber"]</p>
+</div>
+
+---------------------------------------------------------------------
+
+Regras de Negócio:
+As regras de negócio definem e/ou restringem como o negócio deverá se comportar,
+descrevem como determinadas operações devem ou não ser realizadas, 
+além de quando e quais limites serão aplicados.

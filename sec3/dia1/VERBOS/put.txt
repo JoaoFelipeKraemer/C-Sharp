@@ -1,0 +1,65 @@
+Operações de atualização (PUT)
+ por ser polivalênte PUT, é possível utilizar requisições desse tipo para fazer operações de upsert,
+ que é quando enviamos um objeto e, caso ele exista, fazemos um update; 
+ 
+ obs: caso não exista, o criamos sob o Id em questão.
+
+OBS2:
+vantagem de usar o PUT e atualizar objetos passando todos os dados novamente é que as requisições
+feitas com o PUT são idempotentes, ou seja, várias requisições idênticas terão sempre o mesmo resultado
+
+[ApiController]
+[Route("clients")]
+public class ClientController : ControllerBase
+{
+    private static List<Client> _clients = new();
+    private static int _nextId = 1;
+
+    [HttpPost]
+    public ActionResult Create(ClientRequest request)
+    {...}
+
+    [HttpPut("{id}")]
+    public ActionResult Update(int id, ClientRequest request)
+    {
+        var client = _clients.FirstOrDefault(c => c.Id == id);
+
+        if (client == null)
+            return NotFound("Client not found");
+
+        request.UpdateClient(client);
+
+        return Ok(client);
+    }
+}
+-----------------------
+public class ClientRequest
+{
+    public string? Name { get; set; }
+    public decimal AccountBalance { get; set; }
+
+    public Client CreateClient(int id)
+    {
+        return new Client
+        {
+            Id = id,
+            Name = Name,
+            AccountBalance = AccountBalance,
+            CreatedAt = DateTime.Now,
+            UpdatedAt = DateTime.Now
+        };
+    }
+
+    public Client UpdateClient(Client client)
+    {
+        client.Name = Name;
+        client.AccountBalance = AccountBalance;
+        client.UpdatedAt = DateTime.Now;
+        return client;
+    }
+}
+
+obs:
+como a classe Client é um reference type (tipo de referência), o objeto recebido no parâmetro
+ será mutável, razão pela qual não é necessário redefini-lo no método ClientController.Update()
+  após alterar as suas propriedades no ClientRequest.UpdateClient().
