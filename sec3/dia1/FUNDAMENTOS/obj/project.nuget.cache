@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "T9J/K6jFzL+fLOef01nFug8OyWGw1bmkpxT/d4T8cDO0C3sb0BUnHsHE/0vtDqgA3e2qX35TYg0cFq8Uhw2ORQ==",
+  "success": true,
+  "projectFilePath": "/home/joao/trybe-exercicios/05-C-sharp/sec3/dia1/FUNDAMENTOS/FUNDAMENTOS.csproj",
+  "expectedPackageFiles": [
+    "/home/joao/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/joao/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/joao/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/home/joao/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/home/joao/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/home/joao/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

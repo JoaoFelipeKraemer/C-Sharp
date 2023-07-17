@@ -1,0 +1,25 @@
+Fundamentos do ASP.NET
+
+*ASP.NET MVC e a criação de APIs
+
+Como vimos anteriormente, o ASP.NET nos disponibiliza diferentes modelos
+pré-definidos para criação de projetos.
+
+No ASP.NET MVC, conseguimos facilmente iniciar aplicações Web utilizando o padrão MVC.
+
+*dotnet new webapi
+
+---------------------
+
+Configuração de certificado HTTPS
+
+dotnet dev-certs https --trust
+
+-----------------
+
+Executando nossa API
+Chegou a grande hora de compilar e executar esse projeto para vermos como ele funciona!
+
+Com o certificado adicionado, execute o comando:
+
+dotnet run
