@@ -1,0 +1,17 @@
+Roteamento de API
+
+O que é a data annotation [Route]?
+
+-Data Annotation é um atributo introduzido no .NET 3.5. Seu objetivo é adicionar validações
+às classes usadas em aplicações ASP.NET. Como exemplo, temos o [Required], quando você indica
+ que aquele campo é obrigatório, ou o [StringLength(5,MinimumLength=2)]
+  para determinarmos quantidades específicas de caracteres.
+
+-O roteamento específico é como a API Web, ou seja, liga um URI
+ (Uniform Resource Identifier, ou identificador de recurso uniforme)
+  a uma ação e, para o ASP.NET entender essa relação, é usada a annotation [Route].
+
+SINTAXE: [Route("api/projects")]
+-------------------------------------------------------------------
+
+-Usando o parâmetro genérico [controller]
