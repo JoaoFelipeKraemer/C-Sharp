@@ -1,0 +1,61 @@
+Utilizando parâmetros
+
+Utilizando o parâmetro {id}
+ [HttpGet]
+ public IActionResult Get()
+ {
+    return Ok();
+ }
+
+ [HttpGet("{id}")]
+ public IActionResult GetById(int id)
+ {  
+    if()
+    {
+        return NotFound();
+    }    
+    return Ok();
+ }
+
+ --------------------------------------------
+
+ Uso de múltiplas [Route] em uma mesma Action
+
+
+Vimos, ao longo desta lição, como usar as annotations de forma separada, um verbo para um método.
+
+Agora vamos um pouco mais além e mostrar como podemos juntar duas rotas dentro de um mesmo método.
+
+Quando a assinatura e regras de negócio do método forem iguais, você pode juntá-los em múltiplas [Route].
+
+---------------------------------------------------------------------
+
+Restrição de tipos e valores em parâmetros de ações
+
+
+[Route("Default/GetRecorsById/{id:int:min(1)}")]
+
+public ActionResult GetRecorsById(int id)
+{
+    string str = string.Format("id passed as parameter: {0}",id);
+    return Ok(str);
+}
+
+No exemplo acima, restringirmos para que apenas números inteiros possam ser roteados no método GET,
+ e se alguém passar, por exemplo, um comando/GetRecordsById/arroz, automaticamente o ASP.NET retornará um erro.
+
+OBS:
+E se alguém passar um /GetRecordsById/0? 🤔
+
+Resposta: Nesse nosso exemplo, também retorna um erro, pois, apesar de 0 ser número inteiro,
+ estipulamos que o menor inteiro possível fosse o número 1.
+
+---------------------------------------------
+constraints
+{id:alpha}: Restringe o parâmetro para conter apenas letras
+
+{id:bool}: Restringe o parâmetro para representar valores booleanos
+
+{id:datetime}: Restringe para usar valores de Data e Hora
+
+{id:Guid}: Restringe para usar apenas Guids
