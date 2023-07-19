@@ -1,0 +1,4 @@
+Roteamento de APIs
+DataAnnotations no ASP.NET
+conteinerização no Docker
+Publicação Railway

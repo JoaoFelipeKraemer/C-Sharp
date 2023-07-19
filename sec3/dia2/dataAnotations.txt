@@ -1,0 +1,41 @@
+Data annotations e verbos HTTP
+
+Se eu quiser usar um Patch, basta eu fazer um [HttpPatch],
+Se eu quiser usar um Get? [HttpGet]
+--------------------------------------------
+Utilizando a data annotation get
+ [HttpGet]
+
+
+Utilizando a data annotation post
+ [HttpPost]
+
+Utilizando a data annotation put
+ [HttpPut]
+
+ *[HttpPut("{id}")]
+
+Utilizando a data annotation delete
+
+ *[HttpDelete("{id}")]
+----------------------------------------------------------
+
+um GET de todas as informações em um banco de dados;
+
+um POST sem especificar em qual caminho do recurso receberá a nova adição;
+
+um PUT que atualiza sem especificar qual o id;
+
+um DELETE geral de “o último que sair apague a luz”.
+
+OBS:
+As { } nas annotations servem para passar parâmetros dentro da action, dentro do endpoint de nossa Controller.
+
+exempo:
+GET: /api/itens -lista tudo
+
+GET: /api/itens/{id}- lista especificando por id
+
+PUT: /api/itens/{id}- edita especificando por id
+
+DELETE: /api/itens/{id}- deleta especificando por id
