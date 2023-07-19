@@ -1,0 +1,61 @@
+ REST (REpresentational State Transfer) - Transferência Representacional de Estado
+
+
+status code HTTP:
+
+Respostas de informação (100-199)
+
+Respostas de sucesso (200-299)
+
+Redirecionamentos (300-399)
+
+Erros do cliente (400-499)
+
+Erros do servidor (500-599)
+=========================================================================================
+
+REST padroniza como devemos escrever nossos endpoints.
+
+Seguir esses padrões é muito importante, porque endpoints bem escritos podem até mesmo reduzir a complexidade do nosso código
+
+Características de uma API RESTful
+
+Uma API é considerada RESTful quando segue à risca o padrão REST, isto é, quando aplica:
+
+*Interface uniforme
+
+*Arquitetura cliente-servidor
+
+*Sem Estado
+
+*Dados armazenáveis em cache
+
+*Sistema em camadas
+
+*Código sob demanda
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+WORKDIR /app
+
+# Copiando tudo
+COPY . ./
+# Restaurando dependências
+RUN dotnet restore
+# Compilando e publicando versão de release
+RUN dotnet publish -c Release -o out
+
+# Utilizando imagem de execução
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+# Copiando da pasta /app/out de build-env para a pasta atual dessa imagem
+COPY --from=build-env /app/out .
+# Executando a aplicação
+ENTRYPOINT ["dotnet", "NomeDaAplicacao.dll"]
+
+OBS: app.UseHttpsRedirection();
+
+docker build -t nome-tag-imagem .
+
+docker images
+
+docker container run -p 5000:80 nome-tag-imagem
