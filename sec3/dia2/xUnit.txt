@@ -1,0 +1,72 @@
+xUnit e FluentAssertions para testes
+
+O xUnit é um framework de testes bastante utilizado no mercado.
+ Ele usa a annotation [Fact], e é assim que ele informa que o método
+ com aquela annotation se trata de um teste.
+ 
+ Quando a pessoa usuária clicar em Run Tests, ele vai buscar por essa annotation.
+
+ Para reaproveitar testes e mudar apenas as massas, podemos utilizar a annotation [Theory]
+  para indicar que vamos fazer testes reaproveitáveis e a annotation [InlineData param1, param2]
+   para passar as massas de testes
+
+---------------------------------------------------------------------
+Uma das estruturas de testes mais usadas no mercado é o AAA - Arrange, Act, Assert, onde:
+
+Arrange é onde passamos os mocks e as massas de teste, é a preparação do teste.
+
+Act é o teste em ação, onde são passados os métodos a serem testados.
+
+Assert é onde passamos os métodos de verificação e resultado esperado. 
+-------------------------------------------------------------------------------------
+
+Fluent Assertions:
+
+ é um conjunto de métodos que aumentam o leque para testes, bem como deixam a leitura dos testes mais legível,
+ com sua estrutura English-based
+
+EXEMPLO1
+string actual = "ABCDEFGHI";
+actual.Should().StartWith("AB").And.EndWith("HI").And.Contain("EF").And.HaveLength(9);
+
+EXEMPLO2 - com id
+[Fact]
+public void GetByIdPassed_ReturnsOkResult()
+{
+    //Arrange
+    var testId = 1;
+    //Act
+    var okResult = _controller.Get(testId);
+    //Assert
+    Assert.IsType<OkObjectResult>(okResult.Result);
+    //ou
+    okResult.Result.Should().BeOfType<OkObjectResult>("id passed as parameter: {0}", typeof(OkObjectResult))
+}
+
+EXEMPLO3 - sem id
+
+[Fact]
+public void Get_WhenCalled_ReturnsOkResult()
+{
+
+    //Act
+    var okResult = _controller.Get();
+    //Assert
+    Assert.IsType<OkObjectResult>(okResult.Result);
+
+}
+
+EXEMPLO4 - delete por id
+
+[Fact]
+public void Remove_ExistingIdPassed_RemovesOneItem()
+{
+
+    //Act
+    var okResult = _controller.Remove(2);
+    //Assert
+    Assert.Equal(4, _service.GetAllItens().Count());
+
+}
+DICAAAAAAAA
+se a variável não estiver sendo utilizada , você pode substitui-la por um underline.

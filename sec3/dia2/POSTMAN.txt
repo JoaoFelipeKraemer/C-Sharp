@@ -1,0 +1,10 @@
+Utilizando o Postman
+
+As API’s são muito utilizadas para integrarmos sistemas diversos.
+ Para validarmos que uma .NET WebAPI está rodando corretamente, há diversas formas, e uma delas é via Postman.
+
+O Postman é uma ferramenta bastante útil para uma pessoa desenvolvedora,
+ pois permite fazer requisições HTTP e, assim, simular requisições a uma API. 
+ Além disso, pode compartilhar essa simulação, bem como documentar sua API.
+
+De olho na dica👀: Para baixar o Postman, você poderá acessar o link https://www.postman.com/downloads/
