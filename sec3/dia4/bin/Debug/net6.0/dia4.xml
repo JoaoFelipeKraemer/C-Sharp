@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>dia4</name>
+    </assembly>
+    <members>
+        <member name="M:dia4.Controllers.WeatherForecastController.Get">
+            <summary>
+            Lista os itens do objeto WeatherForecastXXXXXXXXXX.
+            </summary>
+            <returns>Os itens do objeto WeatherForecasXXXXXXXXXXXXXt</returns>
+            <response code="200">Retorna os itens do objeto WeatherForecastXXXXXXXXXXX</response>
+        </member>
+    </members>
+</doc>

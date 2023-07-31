@@ -1,0 +1,52 @@
+Os comandos que são necessários para a ferramenta estar disponível em uma aplicação Web utilizando .NET são as instruções:
+
+builder.Services.AddSwaggerGen();
+
+app.UseSwagger();
+
+app.UseSwaggerUI();
+
+*dotnet new webapi
+
+**O que é Swagger UI?” 🤔
+
+ UI vem de User Interface, sendo uma interface web gerada pelo Swagger para facilitar a manipulação e interação com a API e sua documentação.
+=====================================================================================
+**Como acessar a documentação gerada pelo Swagger?
+
+rota padrão definida é /swagger.
+Ou seja, utilizando o modo debug ao executar a aplicação, podemos digitar esse diretório na URL após o host
+
+https://localhost:7005/swagger
+
+=====================================================================================
+**Adicionando informações na documentação
+
+função AddSwaggerGen() com a SwaggerDoc(), onde a função SwaggerDoc() pertence à classe SwaggerGenOptions
+ e necessita de dois parâmetros a serem passados: o primeiro se refere ao nome da documentação,
+ e o outro é um objeto do tipo OpenApiInfo, que possui propriedades como título da API, descrição e até mesmo a versão.
+ Vamos inserir tais configurações em nosso arquivo Program.cs.
+
+=====================================================================================
+**Utilizando Swagger para adicionar comentários em ações
+
+Para incluir comentários quando estamos lidando com uma aplicação .NET 
+e construindo uma documentação Swagger, podemos configurá-la da seguinte forma:
+
+Nas configurações do programa em Program.cs, onde é definida a função AddSwaggerGen(), definir as especificações abaixo:
+
+builder.Services.AddSwaggerGen(options =>
+{
+    string file = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    string path = Path.Combine(AppContext.BaseDirectory, file);
+    options.IncludeXmlComments(path);
+});
+
+Dessa forma, os arquivos lidos serão do tipo xml, em que precisamos incluir configurações no csproj do projeto 
+para que seja possível gerar os arquivos definidos nas especificações citadas. 
+Para isso, vamos adicionar as seguintes configurações no arquivo de csproj.
+
+<PropertyGroup>
+  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  <NoWarn>$(NoWarn);1591</NoWarn>
+</PropertyGroup>
