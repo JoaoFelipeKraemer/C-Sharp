@@ -1,0 +1,73 @@
+Testes no ASP.NET
+
+Como testar no ASP.NET?
+
+O .NET possui uma biblioteca muito interessante para testes, que é a xUnit; ela permite criar e configurar
+ testes de unidade nos nossos códigos. Porém, para o contexto de uma aplicação inteira, como é criado no ASP.NET,
+  os testes de unidade podem não ser suficientes!
+
+E aí entram os testes de integração, onde vamos testar todas as pequenas partes interagindo para garantir
+ que a aplicação funciona como deveria.
+
+
+ No ASP.NET fazemos isso com a classe TestServer, que está inclusa no namespace Microsoft.AspNetCore.Mvc.Testing.
+
+
+ Instalando o TestServer
+
+ dotnet new xunit -o app.Test
+
+ Agora vamos instalar o pacote responsável pelo TestServer. Para isso, dentro do seu projeto .NET webapi, use a linha de comando:
+
+
+ dotnet add package Microsoft.AspNetCore.Mvc.Testing --version 6.0.5
+
+ Configurando o projeto para testes
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ Inclua a linha <InternalsVisibleTo Include="app.Test" /> no .csproj da aplicação principal.
+ 
+  Isso vai garantir que os tipos internos estejam visíveis para o projeto de teste.
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+ Inclua a linha public partial class Program { } no arquivo Program.cs da aplicação principal. Isso vai tornar a classe Program pública.
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Criando nosso primeiro teste
+
+O principal elemento dos nossos testes é a WebApplicationFactory: esse será um objeto genérico, ou seja, utiliza o parâmetro <T>,
+ onde T é a classe EntryPoint de sua aplicação.
+
+
+Geralmente o EntryPoint será a classe startup.cs ou program.cs 
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+Os testes de integração utilizam a WebApplicationFactory para configurar 
+os serviços de testes e criar o cliente que será foco para as requisições.
+
+A sintaxe para criação de uma WebApplicationFactory é a seguinte:
+
+[Fact]
+public async Task InitialTest()
+{
+    var application = new WebApplicationFactory<Program>()
+        .WithWebHostBuilder(builder =>
+        {
+            // ... Configurações do teste de integração
+        });
+
+    // Criação do cliente
+    var client = application.CreateClient();
+}
+
+A função CreateClient() cria uma instância do objeto HttpClient que serve para criar requisições, respostas,
+ redirecionamentos e identificadores de cookies.
+
+
+
+ Testando a WeatherForecast

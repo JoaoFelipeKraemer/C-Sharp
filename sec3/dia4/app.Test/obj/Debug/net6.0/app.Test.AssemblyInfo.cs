@@ -10,14 +10,13 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("dia4")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("app.Test")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("dia4")]
-[assembly: System.Reflection.AssemblyTitleAttribute("dia4")]
+[assembly: System.Reflection.AssemblyProductAttribute("app.Test")]
+[assembly: System.Reflection.AssemblyTitleAttribute("app.Test")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("app.Test")]
 
 // Gerado pela classe WriteCodeFragment do MSBuild.
 
