@@ -1,0 +1,167 @@
+Conhecendo a Injeção de Dependências
+
+Durante o desenvolvimento de um software, nos deparamos com situações nas quais precisamos criar novas classes
+ que possuem comportamentos e estruturas semelhantes com outras que já existem no projeto. 
+ Uma possível alternativa é criarmos uma nova classe e copiar os comportamentos que são iguais entre elas,
+  e modificar/criar novos métodos para especificar esse objeto.
+
+  Porém isso é muito custoso.
+
+Princípio de Inversão de Dependências e sua aplicação com INJEÇÃO DE DEPENDÊNCIAS.
+
+--------Entidades de alto nível não devem depender de entidades de baixo nível. Ambos devem depender de abstrações.-------
+
+-As classes não devem depender de outra classe concreta ou instanciável, mas sim de classes abstratas ou de interfaces.
+ Isso faz com que o projeto fique mais robusto, pois ao alterar os detalhes de implementação ele não quebra.
+
+--A Inversão de Dependências também permite a reutilização das classes com implementações diferentes.--
+
+VANTAGENS:
+
+Classes com baixo acoplamento e com as responsabilidades segregadas corretamente trazem importantes benefícios, tais como:
+
+-----Facilidade na manutenção e evolução do serviço;
+Com as classes fracamente acopladas, alterações que forem feitas em uma classe não afetarão diretamente as outras.
+
+----Separação de responsabilidades;
+Classes desacopladas não sabem da implementação de outras. Suas responsabilidades ficam encapsuladas somente dentro dela.
+
+----Simplificação do desenvolvimento de testes unitários.
+Quando queremos testar uma classe, não precisamos saber dos detalhes de implementação do serviço. 
+Podemos simular as condições externas que irão entrar no nosso cliente.
+
+COMO INVERTEMOS DEPENDENCIAS NO CÓDIGO??
+
+Injeção de Dependências
+Podemos utilizar o padrão de desenvolvimento chamado Injeção de Dependências.
+
+= Não confunda Injeção de Dependência com Inversão de Dependências.
+= O primeiro é um padrão de desenvolvimento (Design Pattern)
+=o segundo é um princípio de arquitetura.
+
+Podemos fazer a injeção de três formas:
+
+Por interface;
+Por construtor;
+Por propriedade.
+
+=================================================================================================================================
+Injeção por Interface
+A injeção por interface ocorre quando uma classe recebe uma abstração da implementação, a qual ela irá utilizar por meio
+ de uma interface. Desta forma, quem define a implementação da abstração a ser utilizada é quem está utilizando a classe principal.
+
+
+public interface IDispositivo
+{
+    void Acionar();
+    void Desacionar();
+}
+
+public class Freios : IDispositivo
+{
+    public void Acionar()
+    {
+        // Frear
+    }
+    public void Desacionar()
+    {
+        // Parar de frear
+    }
+}
+==============================================================================================================================
+Injeção por Construtor
+
+A injeção por construtor é a forma mais comum de injeção e ocorre quando a classe recebe por construtor uma
+ instância de uma classe que ela mesma irá utilizar.
+
+public class Pedal
+{
+    private IDispositivo _dispositivo;
+    public Pedal(IDispositivo dispositivo)
+    {
+        _dispositivo = dispositivo;
+    }
+
+    public void Pisar()
+    {
+        _dispositivo.Acionar();
+    }
+    public void Soltar()
+    {
+        _dispositivo.Desacionar();
+    }
+}
+
+public interface IDispositivo
+{
+    void Acionar();
+    void Desacionar();
+}
+
+public class Freios : IDispositivo
+{
+    public void Acionar()
+    {
+        // Frear
+    }
+    public void Desacionar()
+    {
+        // Parar de frear
+    }
+}
+
+Freio freio = new Freio();
+Pedal pedal = new Pedal(freio);
+classe Freio tem a injeção de dependências por interface, o qual é injetado por construtor na classe Pedal.
+
+=================================================================================================================================
+Injeção por Propriedade
+
+é feita utilizando um “método _setter_” de uma propriedade da classe. Essa forma de injeção
+ faz com que o cliente permita que os agentes externos manipulem suas dependências a qualquer momento
+
+
+
+ public class Pedal
+{
+    private IDispositivo _dispositivo;
+    public IDispositivo Dispositivo
+    {
+        get
+        {
+            if (_dispositivo == null)
+            {
+                throw new Exception("Não inicializado.");
+            }
+            return _dispositivo;
+        }
+        set { _dispositivo = value }
+    }
+
+    public void Pisar()
+    {
+        _dispositivo.Acionar();
+    }
+    public void Soltar()
+    {
+        _dispositivo.Desacionar();
+    }
+}
+
+Freio freio = new Freio();
+Embreagem embreagem = new Embreagem();
+Pedal pedal = new Pedal();
+
+// Injeção do Freio no Pedal
+pedal.Dispositivo = freio;
+// Acionar o freio
+pedal.Pisar();
+// Desacionar o freio
+pedal.Soltar();
+
+// Injeção da Embreagem no Pedal
+pedal.Dispositivo = embreagem;
+// Acionar a embreagem
+pedal.Acionar();
+// Desacionar a embreagerm
+pedal.Soltar();
