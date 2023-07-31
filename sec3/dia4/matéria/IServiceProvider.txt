@@ -1,0 +1,70 @@
+Aplicando Injeção de Dependências no ASP.NET
+
+Para garantir que todas as dependências sejam injetadas corretamente, o ASP.NET dispõe de uma solução nativa,
+ sem a necessidade de instalar novos pacotes ao projeto.
+ Ele fornece um container de serviços, IServiceProvider, no qual são registrados todos os serviços necessários.
+
+👀: Este container pode ser adicionado nos arquivos Program.cs, Startup.cs ou em uma classe de extensão do IServiceProvider
+
+
+Esses serviços podem ser injetados com três tipos de ciclo de vida:
+
+1 Transient: cria-se uma instância nova para cada vez que o serviço é requisitado;
+2 Scoped: cria-se uma instância nova para cada escopo diferente;
+3 Singleton: cria-se apenas uma instância para toda a aplicação.
+=====================================================
+EXEMPLO
+
+Vamos imaginar que estamos desenvolvendo uma API para uma concessionária de carros e tenhamos o endpoint 
+
+v1/car-models 
+
+que irá retornar uma lista de modelos de carros:
+
+public class CarModelController : Controller
+{
+    private readonly ICarModelRepository _repository;
+
+    public CarModelController(ICarModelRepository repository)
+    {
+        _repository = repository;
+    }
+
+    [Route("v1/car-models")]
+    [HttpGet]
+    public IEnumerable<CarModel> Get()
+    {
+        return _repository.Get();
+    }
+}
+
+Onde o repositório, injetado via interface, e sua interface são descritos da seguinte forma:
+
+public interface ICarModelRepository
+{
+    IEnumerable<CarModel> Get();
+}
+
+public class CarModelRepository : ICarModelRepository
+{
+    public IEnumerable<CarModel> Get()
+    {
+        // Detalhes de implementação para pegar os modelos de carro no banco de dados
+    }
+}
+
+Para utilizar a injeção de dependências do ASP.NET, precisamos configurar os Scoped Services:
+
+
+// Startup.cs
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+    services.AddScoped<ICarModelRepository, CarModelRepository>();
+}
+
+Conclusão
+A Injeção de Dependências é um padrão de projeto muito utilizado no mercado por facilitar a manutenção e a evolução dos projetos.
+Como vimos no exemplo, conseguimos reutilizar uma classe para realizar funções diferentes.
+ Ter essa flexibilidade reduz o tempo de desenvolvimento, pois não precisamos ficar criando classes diferentes
+  que têm seus detalhes de implementação muito parecidos.
