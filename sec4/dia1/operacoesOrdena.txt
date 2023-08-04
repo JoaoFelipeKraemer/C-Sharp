@@ -1,0 +1,87 @@
+Operações de Ordenação
+
+Nas suas consultas usando o LINQ, você pode ordenar os resultados de sua consulta utilizando o tipo da variável (int, string, …) 
+ou até mesmo algum dos atributos de um objeto que segue uma determinada classe ou struct.
+
+
+CLAUSULAS:
+========================================================================================
+Order By
+
+Para realizar uma operação de ordenação simples, você pode fazer uso da cláusula orderby. Vamos a um exemplo:
+
+Suponhamos uma lista do tipo string com nomes de pessoas.
+ Para ordenar pelo nome das pessoas, teríamos uma cláusula orderby antes da cláusula select.
+
+EXEMPLO:
+  List<string> names = new List<string>
+{
+    "Roberta", "Laura", "Maria", "Ana", "Pedro", "Ricardo"
+};
+
+var orderedNames = from name in names
+                    orderby name
+                    select name;
+
+foreach(string orderedName in orderedNames) {
+    Console.WriteLine(orderedName);
+}
+//retorno
+Ana
+Laura
+Maria
+Pedro
+Ricardo
+Roberta
+
+EXEMPLO2(UTILIZANDO AS CLASSES DA LIÇÃO DE DTO)
+
+var booksList = from book in books
+                from author in authors
+                where author.Id == book.AuthorId
+                orderby author.Name
+                select new BookDTO { BookName = book.Name, AuthorName = author.Name };
+
+foreach(BookDTO book in booksList)
+{
+    Console.WriteLine(book.BookName + " - Author: " +book.AuthorName);
+}
+
+//retorno
+Água Viva - Author: Clarice Lispector
+A hora da Estrela - Author: Clarice Lispector
+Capitães da Areia - Author: Jorge Amado
+Cacau - Author: Jorge Amado
+========================================================================================
+OrderByDescending
+
+-
+Caso você queira produzir uma consulta ordenada de forma decrescente, basta adicionar a cláusula descending no final da sua cláusula orderby.
+
+Seguindo o mesmo exemplo de nomes, temos:
+
+EXEMPLO:
+
+ List<string> names = new List<string>
+{
+    "Roberta", "Laura", "Maria", "Ana", "Pedro", "Ricardo"
+};
+
+var orderedNames = from name in names
+                    orderby name descending
+                    select name;
+
+foreach(string orderedName in orderedNames) {
+    Console.WriteLine(orderedName);
+}
+
+//retorno
+
+Roberta
+Ricardo
+Pedro
+Maria
+Laura
+Ana
+
+========================================================================================
