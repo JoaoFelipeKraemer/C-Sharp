@@ -1,0 +1,149 @@
+DTO
+
+DTO significa Data Transfer Object, ou objeto de transferência de dados.
+ É um conceito amplamente utilizado na programação e não se limita ao C#.
+ Este conceito visa criar um objeto de transferência que irá dar o contrato e a estrutura dos objetos que são 
+ transferidos entre camadas da aplicação.
+
+ EXEMPLO:
+
+ IMAGINE a classe Customer de um sistema bancário.
+ 
+ Essa classe terá atributos que representam dados básicos de cadastro como nome, CPF, cidade e também contém dados sensíveis:
+  -id,
+  -tipo de conta,
+  -saldo total
+  -e outros dados sigilosos da conta.
+
+ Caso você deseje criar uma rota em uma API que consulte os dados básicos de cadastro da classe Customer, 
+ o objeto utilizado na sua controller para o response à sua rota não poderá ser a classe Customer completa.
+ 
+Neste caso, você pode criar uma nova classe, que será o seu DTO, com os atributos necessários para o retorno do seu JSON.
+  
+ Portanto, o seu DTO será uma nova classe ou struct que represente o que precisa.
+
+PASSO A PASSO
+
+ 1- Criamos uma classe Customer com os atributos Id, Name, City e Password:
+
+ public class Customer {
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string City { get; set;}
+    public string Password { get; set; }
+}
+
+2- Em outra classe, podemos criar uma lista de clientes baseada nessa classe
+
+List<Customer> customers = new List<Customer>
+{
+    new Customer { Id = 1, Name = "Rebeca", City = "Recife", Password =  "706632"},
+    new Customer { Id = 2, Name = "José", City = "Manaus", Password =  "128620"},
+    new Customer { Id = 3, Name = "Sandra", City = "Salvador", Password =  "043407"}
+};
+
+3-Se formos criar uma consulta LINQ baseada na lista de Customer teríamos:
+
+var customersList = from customer in customers
+                            select customer;
+
+foreach(Customer customer in customersList)
+{
+    Console.WriteLine(customer.Name + " - City: " +customer.City + " - Password: " + customer.Password);
+}
+
+//retorno
+Rebeca - City: Recife - Password: 706632
+José - City: Manaus - Password: 128620
+Sandra - City: Salvador - Password: 043407
+
+4-Neste nível de escopo, a senha é acessível. Uma solução seria deixar este atributo como private mas isso impediria
+ uma fonte de dados como um arquivo ou banco de dados de popula-lo. A solução neste caso será criar um DTO.
+
+
+5-Criamos uma classe de DTO com os atributos desejados:
+
+public class CustomerBasicData {
+    public string Name { get; set; }
+    public string City { get; set;}
+    
+}
+
+6-E então modificamos a nossa consulta LINQ para
+
+ var customersList = from customer in customers
+                            select new CustomerBasicData { Name = customer.Name, City = customer.City };
+
+foreach(CustomerBasicData customer in customersList)
+{
+    Console.WriteLine(customer.Name + " - City: " +customer.City);
+}
+
+criamos um objeto novo do tipo CustomerBasicData.
+
+Esse novo objeto não possui o atributo Id nem o atributo Password.
+
+========================================================================================
+
+
+Aninhando resultados com o DTO
+
+Vamos a um segundo exemplo.
+
+ Suponha que você possua uma lista de pessoas autoras de livros e uma lista de livros.
+
+Entretanto, na lista de livros você não possui o nome da pessoa autora mas sim o Id da pessoa autora.
+
+public class Author {
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+public class Book {
+    public string Name { get; set; }
+    public int AuthorId { get; set;}
+}
+
+-TERIAMOS UMA LISTA DE ACORDO COM O EXEMPLO:
+
+List<Author> authors = new List<Author>
+{
+    new Author { Id = 1, Name = "Clarice Lispector"},
+    new Author { Id = 2, Name = "Jorge Amado" }
+};
+
+List <Book> books = new List<Book>
+{
+    new Book { Name = "Capitães da Areia", AuthorId = 2},
+    new Book { Name = "Água Viva", AuthorId = 1},
+    new Book { Name = "A hora da Estrela", AuthorId = 1},
+    new Book { Name = "Cacau", AuthorId = 2},
+};
+
+como poderiamos criar uma lista do nome do livro e nome do author?
+
+criando um DTO que simbolize os atributos que desejamos ter e nomeá-lo como BookDTO
+
+public class BookDTO {
+    public string BookName { get; set; }
+    public string AuthorName { get; set; }
+}
+
+-Agora, podemos criar uma consulta LINQ aninhada como fizemos na lição de
+ Operadores de Projeção e construir saídas do mesmo tipo do nosso DTO.
+
+ var booksList = from book in books
+                from author in authors
+                    where author.Id == book.AuthorId
+                select new BookDTO { BookName = book.Name, AuthorName = author.Name };
+
+foreach(BookDTO book in booksList)
+{
+    Console.WriteLine(book.BookName + " - Author: " +book.AuthorName);
+}
+
+//retorno
+Capitães da Areia - Author: Jorge Amado
+Água Viva - Author: Clarice Lispector
+A hora da Estrela - Author: Clarice Lispector
+Cacau - Author: Jorge Amado

@@ -1,0 +1,69 @@
+Operadores de Projeção
+
+
+Existem momentos em que vamos precisar criar uma consulta para selecionar 
+informações específicas da nossa fonte de dados. Para isso utilizamos a cláusula select.
+
+Em toda consulta, o select sempre irá indicar o tipo de dado que será retornado.
+
+
+Essa cláusula é usada para criar uma saída dos elementos da fonte de dados na qual estamos trabalhando,
+ e essa saída pode não ser necessariamente um tipo vindo da nossa fonte de dados, mas sim um elemento transformado.
+
+OBS: Quando o select é usado para transformar um elemento, dizemos que ele está realizando uma PROJEÇÃO sobre nossa fonte de dados.
+
+EXEMPLO:
+
+string[] words = { "owner", "report", "warm", "scramble", "party" };
+
+var objWords = from word in words
+                select new { word, length = word.Length };
+
+
+RETORNO word: owner, length: 4....
+
+Criamos um objeto totalmente novo, que não possui relação com nossa fonte de dados,
+ e que poderá ser usado e transformado pelo programa sem afetar sua origem.
+
+========================================================================================
+
+Consulta Aninhada
+
+Podemos criar também uma consulta select que gere um objeto através do from e o mesmo seja um fonte de consulta para outro select.
+ 
+ EXEMPLO:
+  Suponhamos que temos uma lista formada de outra lista de jogos.
+  Cada lista de jogos possui jogos de uma determinada categoria. Entretanto, queremos retornar todos os jogos independente da categoria:
+
+
+var games = new List<List<string>>
+{
+    new List<string> { "Valorant", "CS GO", "Battlefield" },
+    new List<string> { "Need For Speed", "The crew" },
+    new List<string> { "League of Legends", "Dota" }
+};
+
+var gamesInLine = from gameLine in games
+                  from game in gameLine
+                  select game;
+                
+foreach(string game in gamesInLine)
+{
+    Console.WriteLine(game);
+}
+
+nesse EXEMPLO temos duas cláusulas from
+
+O primeiro retorna em gameLine cada uma das listas de string contendo jogos de uma categoria.
+Na segunda cláusula from, temos cada game da lista gerada. Por fim, em gamesInLine, teremos uma lista com todos os games em uma única lista.
+
+A saída do console com o Console.WriteLine será:
+
+
+Valorant
+CS GO
+Battlefield
+Need For Speed
+The crew
+League of Legends
+Dota

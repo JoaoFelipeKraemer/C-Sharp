@@ -1,0 +1,7 @@
+Coleções de Dados
+LINQ
+DTO
+
+
+As coleções são uma excelente forma de trabalhar com estruturas de dados enquanto o LINQ é a linguagem de query que te 
+permitirá fazer consultas, manipulação de dados e criar novos objetos de transferência, chamados DTOs

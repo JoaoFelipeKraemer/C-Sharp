@@ -1,0 +1,113 @@
+Operadores de Filtragem
+
+
+Entre from e select, podemos incluir uma série de cláusulas adicionais para filtrar nossos dados, sendo where uma das mais utilizadas. 
+
+
+where serve para incluirmos expressões que realizam uma validação entre os dados e a condição passada. 
+
+
+EXEMPLO:
+
+internal class Artist
+  {
+    public string? name { get; set; }
+    public int listeners { get; set; }
+  }
+
+Vamos considerar que temos uma fonte de dados chamada artists, composta pela classe Artist apresentada acima.
+
+
+var artists = new List<Artist>
+      {
+        new Artist { name = "Raul Seixas", listeners = 50000 },
+        new Artist { name = "Mozart", listeners = 15000 },
+        new Artist { name = "Elvis Presley", listeners = 25000 },
+        new Artist { name = "Bob Dylan", listeners = 30000 },
+        new Artist { name = "Guns N' Roses", listeners = 40000 },
+      };
+
+Nossa consulta pretende retornar apenas os artistas que tenham mais que 30000 ouvintes.
+
+var topListeners =
+               from artist in artists
+               where artist.listeners > 30000
+               select artist.name;
+
+PONTO A PONTO:
+
+1-primeira linha from indica a fonte de dados que será artists
+
+2-depois de definida a fonte, where indica que queremos os dados que atendam a condição de possuírem mais que 30000 ouvintes
+
+3-Por último, utilizamos o select para indicar que queremos retornar apenas o atributo name de cada dado filtrado.
+
+//retorno: Raul Seixas
+Guns N' Roses
+
+
+========================================================================================
+
+EXEMPLO 2: 
+
+Agora vamos criar uma lista da classe Book:
+
+
+var books = new List<Book>
+      {
+        new Book { title = "The Count of Monte Cristo", price = 39, publishYear = 2002 },
+        new Book { title = "Brave new World ", price = 32, publishYear = 1932 },
+        new Book { title = "The Hobbit", price = 35, publishYear = 2011 },
+        new Book { title = "Pan's Labyrinth: The Labyrinth of the Faun", price = 25, publishYear = 2019 },
+        new Book { title = "Throne of Glass", price = 29, publishYear = 2013 },
+      };
+
+riamos nossa fonte de dados. Agora vamos supor que queremos listar apenas os livros com valor maior que 30 reais, observe abaixo:
+
+var booksAfter2000 = from book in books
+                           where book.price > 30
+                           select book.title;
+
+//retorno The Count of Monte Cristo
+Brave new World
+The Hobbit
+========================================================================================
+
+Uma consulta sem WHERE?
+
+Assim como no SQL, no LINQ podemos omitir a cláusula where em casos em que queremos retornar toda a coleção disponível em nossa fonte de dados
+
+EXEMPLO:
+
+string[] greetings = { "Hello World", "Hello LINQ", "Hello trybe" };
+
+
+static void Main(string[] args)
+{
+  string[] greetings = { "Hello World", "Hello LINQ", "Hello Trybe" };
+  var items =
+      from greeting in greetings
+      select greeting;
+  foreach (var item in items)
+      Console.WriteLine(item);
+}
+
+
+//retorno Hello World
+Hello LINQ
+Hello Trybe
+
+========================================================================================
+
+
+Também podemos usar esta forma de consulta para retornarmos a quantidade de elementos disponíveis em nossa fonte de dados. Observe:
+
+
+static void Main(string[] args)
+{
+  string[] greetings = { "Hello World", "Hello LINQ", "Hello Trybe" };
+
+  var numberOfItems = greetings.Count();
+  
+  Console.WriteLine(numberOfItems);
+}
