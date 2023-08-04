@@ -1,0 +1,133 @@
+Elas são úteis quando precisamos manipular uma série de valores em um agrupamento. 
+Essa abordagem facilita, por exemplo, em casos que precisamos retornar uma lista de informações do banco de dados,
+ a qual representa um mesmo agrupamento.
+
+Quando trabalhamos com coleções, estamos nos referindo sempre às classes do namespace System.Collections,
+ cujas instâncias correspondem aos objetos de coleção. 
+
+OBS: classes frequentemente utilizadas no namespace System.Collections
+
+
+As Classes do namespace System.Collections trabalham sempre com objetos não tipados, que são do tipo Object.
+
+Arraylist: São matrizes de objetos que aumentam o seu tamanho dinamicamente.
+Hashtable: Coleções de chave-valor organizadas com base no código hash da chave. 
+
+
+============================================================================
+
+ List<T>:representa uma coleção de objetos genéricos que podem ser acessados por meio do índice
+ e possuem métodos nativos do C#, os quais nos ajudam a trabalhar com listas desses tipos.
+
+Objetos do tipo List<T> implementam a interface IList<T>, que podem ter seu tamanho aumentado dinamicamente conforme necessário.
+
+
+Ex:
+List<string> stringList = new List<string>(){ "carro", "casa", "roupa", "avião" };
+List<int> intList = new List<int>(){ 1, 2, 6, 8, 10, 87, 45 };
+
+List<string> vehicles = new List<string>(){ "carro", "moto", "avião" };
+
+foreach (var item in vehicles)
+{
+    Console.WriteLine(item);
+}
+
+List<string> brands = new List<string>();
+
+List<string> brands = new List<string>(){ "samsung", "dell", "apple", "HP" };
+
+
+Os métodos mais utilizados com listas são: .Add(), .Remove(), .RemoveAt(), .IndexOf() e .Sort(). 
+Cada um deles nos ajuda a resolver alguns problemas:
+
+.Add() - Serve para adicionarmos itens da lista.
+.Remove() - Serve para remover um item específico da lista.
+.RemoveAt() - Serve para removermos itens da lista segundo o índice deles.
+.IndexOf - Nos retorna o índice de um objeto na lista.
+.Sort() - Serve para ordenar a nossa lista.
+
+========================================================================================
+
+MÉTODO .Add()
+
+-utilizado para adicionarmos itens ao final do nosso objeto do tipo List<T>.
+ Com esse método, podemos incrementar nossa lista com novos itens.
+
+EXEMPLO:
+ List<string> cars = new List<string>(){ "Fusca" };
+cars.Add("Brasília");
+cars.ForEach(car => {
+    Console.WriteLine(car);
+});
+
+// retornará as palavras “Fusca” e “Brasília”
+========================================================================================
+
+MÉTODO .Remove()
+
+-utilizado quando precisamos remover o último elemento do nosso objeto List<T>.
+
+EXEMPLO:
+
+List<string> cars = new List<string>(){ "Fusca", "Brasília" };
+cars.Remove("Fusca");
+
+cars.ForEach(car => {
+    Console.WriteLine(car);
+});
+
+//Após a remoção, teremos apenas um item na nossa lista, que será “Brasília”,
+========================================================================================
+
+MÉTODO .RemoveAt()
+
+-O método .RemoveAt() serve para removermos um item específico da lista, enviando por parâmetro o índice do objeto que desejamos remover.
+
+OBS: : A grande vantagem de utilizar o .RemoveAt() , comparado ao método .Remove(), é que podemos passar via parâmetro o índice do objeto
+ que desejamos remover, ao invés de passar o valor inteiro do item, que para alguns casos pode ser um valor grande ou complexo.
+
+EXEMPLO:
+
+List<string> cars = new List<string>(){ "Fusca", "Brasília" };
+cars.RemoveAt(1);
+
+cars.ForEach(car => {
+    Console.WriteLine(car);
+});
+
+//Após a remoção, teremos na nossa lista apenas um item que será retornado, neste caso o item “Fusca”
+========================================================================================
+
+MÉTODO .IndexOf()
+
+-esse método tem como objetivo encontrar o índice de um determinado elemento em um objeto do tipo List<T>.
+
+EXEMPLO:
+
+List<string> integers = new List<string>(){ 18, 45, 29, 99 };
+
+Console.WriteLine(integers.IndexOf(29));
+
+//retorno sera 2, o index do 29
+========================================================================================
+
+MÉTODO .Sort()
+
+-serve para ordenarmos a nossa lista por critérios específicos, os quais podem ser definidos por parte
+dos desenvolvedores ou utilizando a ordenação padrão, ordem alfabética ou numérica, 
+dependendo do tipo de objetos que a nossa lista representa.
+
+EXEMPLO:
+List<string> animals = new List<string>(){ "cachorro", "baleia", "Urso", "Tigre" };
+
+// Ordenando os elementos da lista
+animals.Sort();
+
+animals.ForEach(animal => {
+    Console.WriteLine(animal);
+});
+
+//retornará baleia, cahorro, tigre, urso
+
+OUTROS TIPOS DE ESTRUTURA DE DADOS
