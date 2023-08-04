@@ -1,1 +1,130 @@
 Operações de Junção
+
+Os operadores de junção em consultas LINQ são utilizados para fazer consultas aninhadas na qual mais de uma fonte de dados pode ser utilizada.
+
+Essas fontes de dados podem ser distintas desde que sigam o formato do IEnumerable e são construídas através da cláusula join.
+========================================================================================
+OBS:
+
+CLÁUSULA join por si só não é responsável por juntar as fontes de dados.
+
+ Ela precisa da cláusula on para determinar qual será a condição necessária para unir as fontes de dados em sua junção.
+
+EXEMPLO DE SINTAXE:
+
+    var result = from itemA in fontA
+                 join itemB in fontB
+                 on condition
+========================================================================================
+
+EXEMPLO
+
+Imagine que sua empresa de desenvolvimento possui uma base de dados com todas as pessoas desenvolvedoras.
+Além disso, sua base de dados possui uma lista de linguagens de programação e sistemas de banco de dados.
+
+ Com isso, sua empresa consegue relacionar os conhecimentos de linguagens e bancos de dados de cada pessoa desenvolvedora.
+
+
+As classes que ditam as regras de negócio:
+
+public class Developer {
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}
+
+public class Language {
+    public string Name { get; set; }
+}
+
+public class Database {
+    public string Name { get; set; }
+}
+
+
+classes que criam o relacionamento entre os conhecimentos de cada pessoa desenvolvedora com cada linguagem e com cada banco de dados:
+
+public class DeveloperLanguages {
+    public Developer developer;
+    public Language language;
+}
+
+public class DeveloperDatabases {
+    public Developer developer;
+    public Database database;
+}   
+
+
+POPULAR OS DADOS:
+Developer Julia = new Developer { FirstName = "Julia", LastName = "Santos" };
+Developer Paulo = new Developer { FirstName = "Paulo", LastName = "Oliveira" };
+Developer Rebeca = new Developer { FirstName = "Rebeca", LastName = "Silva" };
+Developer Rodrigo = new Developer { FirstName = "Rodrigo", LastName = "Alves" };
+Developer Joana = new Developer { FirstName = "Joana", LastName = "Batista" };
+Developer Alan = new Developer { FirstName = "Alan", LastName = "Martins" };
+
+Language csharp = new Language { Name = "C#" };
+Language java = new Language { Name = "Java" };
+Language js = new Language { Name = "Javascript" };
+
+Database mysql = new Database { Name = "MySQL"};
+Database sqlserver = new Database { Name = "SQL Server"};
+
+List<DeveloperLanguages> developerLanguages = new List<DeveloperLanguages>
+{
+    new DeveloperLanguages { developer = Julia, language = csharp},
+    new DeveloperLanguages { developer = Julia, language = java},
+    new DeveloperLanguages { developer = Paulo, language = js},
+    new DeveloperLanguages { developer = Rebeca, language = java},
+    new DeveloperLanguages { developer = Rodrigo, language = csharp},
+    new DeveloperLanguages { developer = Rodrigo, language = js},
+    new DeveloperLanguages { developer = Joana, language = csharp},
+    new DeveloperLanguages { developer = Alan, language = js}
+};
+
+List<DeveloperDatabases> developerDatabases = new List<DeveloperDatabases>
+{
+    new DeveloperDatabases { developer = Julia, database = mysql},
+    new DeveloperDatabases { developer = Julia, database = sqlserver},
+    new DeveloperDatabases { developer = Paulo, database = mysql},
+    new DeveloperDatabases { developer = Rebeca, database = mysql},
+    new DeveloperDatabases { developer = Rodrigo, database = sqlserver},
+    new DeveloperDatabases { developer = Joana, database = mysql},
+    new DeveloperDatabases { developer = Alan, database = mysql},
+    new DeveloperDatabases { developer = Alan, database = sqlserver},
+};
+
+
+A partir desse momento podemos criar uma consulta LINQ que possua a junção join.
+
+Caso precisássemos relacionar todas as pessoas desenvolvedoras com seus conhecimentos de 
+linguagens de programação e sistemas de bancos de dados, teríamos:
+
+var developerSkills = from developerLanguage in developerLanguages
+                              join developerDatabase in developerDatabases 
+                              on developerLanguage.developer equals developerDatabase.developer
+                              select new {
+                                DeveloperName = developerLanguage.developer.FirstName + " " + developerLanguage.developer.LastName,
+                                Language = developerLanguage.language.Name,
+                                Database = developerDatabase.database.Name
+                              };
+
+        foreach(var obj in developerSkills)
+        {
+            Console.WriteLine("Developer " + obj.DeveloperName 
+                + " can develop a project using " + obj.Language 
+                + " and " + obj.Database);
+        }
+
+
+//retorno
+Developer Julia Santos can develop a project using C# and MySQL
+Developer Julia Santos can develop a project using C# and SQL Server
+Developer Julia Santos can develop a project using Java and MySQL
+Developer Julia Santos can develop a project using Java and SQL Server
+Developer Paulo Oliveira can develop a project using Javascript and MySQL
+Developer Rebeca Silva can develop a project using Java and MySQL
+Developer Rodrigo Alves can develop a project using C# and SQL Server
+Developer Rodrigo Alves can develop a project using Javascript and SQL Server
+Developer Joana Batista can develop a project using C# and MySQL
+Developer Alan Martins can develop a project using Javascript and MySQL
+Developer Alan Martins can develop a project using Javascript and SQL Server
