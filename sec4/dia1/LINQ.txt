@@ -1,0 +1,99 @@
+LINQ
+
+Language-Integrated Query, ou LINQ:
+é um conjunto de tecnologias que permite manipular coleções vindas de diversas fontes de dados no C#, de forma declarativa e agnóstica.
+
+Agnóstica: 
+No contexto da programação, agnóstico quer dizer independente de tecnologia.
+ No caso do LINQ, podemos trabalhar de uma forma única, manipulando diversas sintaxes de bancos de dados diferentes.
+
+========================================================================================
+
+ O que é uma consulta em LINQ?
+
+ Uma consulta LINQ é composta por duas partes:
+
+1-Obtenção de uma fonte de dados que implemente a interface IEnumerable;
+
+2-Criação da consulta, em que usaremos cláusulas e expressões para efetuarmos nossas operações
+ (como filtragem, ordenação, seleção, entre outros).
+
+ OBS: LINQ também suporta fonte de dados remotas, como o SQL Server, o qual implementa a interface especializada em
+  banco de dados IQueryable, com as mesmas cláusulas e expressões da IEnumerable 
+
+========================================================================================
+
+Como usar o LINQ em um projeto?
+
+As classes utilitárias do C# são organizadas por meios de namespaces, e com todo o pacote de soluções LINQ isso não é diferente.
+ 
+-O .NET Framework possui alguns namespaces separados pela categoria de dado a ser manipulado pelo LINQ.
+
+Existem três classes que merecem um destaque especial e que fazem a mágica acontecer. São elas:
+
+========================================================================================
+System.Linq
+
+Contém todas as classes, interfaces e enumeradores básicos usados para trabalhar com LINQ.
+
+Sempre iremos incluir este namespace em nosso projeto, pois cada consulta feita em LINQ o utiliza como base.
+
+========================================================================================
+System.Data.Linq
+
+As classes neste namespace auxiliam na manipulação de base de dados SQL, independente do banco a ser utilizado.
+
+
+========================================================================================
+
+System.Linq.Expressions
+
+Este namespace disponibiliza uma série de utilitários que permitem a criação das condições
+as quais podemos utilizar no LINQ. É por meio dessas condições que fazemos a manipulação dos dados.
+
+ Um exemplo de expressão pode ser a nossa boa e velha condicional IF
+
+========================================================================================
+
+Como uma consulta LINQ funciona?
+
+
+LINQ permite a construção de consultas tipadas, seja retornando um:
+
+conjunto de objetos;
+objeto;
+subconjunto de campos de um objeto;
+subconjunto de conjunto de objetos.
+
+OBS: Uma consulta é constituída de dois conceitos importantes: elementos e sequências.
+**********************************
+EXEMPLO: games é uma sequência, e Fortnite, Valorant, Destiny, Call of Duty e World of Warcraft são elementos.
+
+string[] games = {"Fortnite", "Valorant", "Destiny", "Call of Duty", "World of Warcraft"}
+
+Classificamos essa fonte de dados como uma sequência local, pois ela representa uma coleção de objetos na memória.
+*************************************
+LINQ permite uma consulta em qualquer coleção que implemente a interface IEnumerable<T>, seja um array,
+ uma lista, um XML ou uma fonte de dados remota, como uma tabela no SQL.
+
+cláusula from: é a única obrigatória quando usamos LINQ.
+
+Com uma fonte de dados definida, podemos pensar o que queremos obter por meio dessa consulta. 
+Ela será criada com o auxílio de um operador, ou seja, um método que transformará a nossa sequência em um determinado modo.
+
+
+EXEMPLO:
+
+Vamos dizer, por exemplo, que queremos extrair todos os elementos que contenham a string 'a' na nossa sequência games. 
+
+Para executarmos esse comando, usaremos os operadores Where e Contains.
+
+ IEnumerable<string> filteredGames = from game in games
+                                          where game.Contains('a')
+                                          select game;
+
+Podemos, ainda, diminuir nossa consulta utilizando os tipos implícitos:
+
+ var filteredGames = from game in games
+                    where game.Contains('a')
+                    select game;                                          
