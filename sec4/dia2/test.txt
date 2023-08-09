@@ -1,0 +1,77 @@
+Testes em Consultas LINQ
+
+
+class Brazil
+{
+    public State[] states;
+    public City[] cities;
+
+    public dynamic[] GetNumberOfCitiesForEachState()
+{
+    var numberOfCitiesForEachState =
+        from state in states
+        join city in cities on state.Abbreviation equals city.StateAbbreviation
+        group city by state.Abbreviation into stateGroup
+        select new {
+            StateAbbreviation = stateGroup.Key,
+            NumberOfCities = stateGroup.Count()
+        };
+
+    return numberOfCitiesForEachState.ToArray();
+}
+}
+
+
+OBS: Como essa consulta cria um tipo anônimo, vamos definir o retorno da função como sendo um Array dynamic.
+
+ Isso nos permite retornar qualquer tipo de dado da função, inclusive um tipo anônimo criado pela consulta LINQ.
+
+
+Testes:
+
+public class StateQueriesTest
+{
+	public static TheoryData<City[], State[], dynamic[]> TestData = new TheoryData<City[], State[], dynamic[]>
+    {
+        {
+            new City[] {
+              new City { Name="Belém", StateAbbreviation="PA" },
+              new City { Name="Santarém", StateAbbreviation="PA" },
+              new City { Name="Rio Branco", StateAbbreviation="AC" },
+              new City { Name="Maceió", StateAbbreviation="AL" },
+            },
+            new State[] {
+              new State { Name="Pará", Abbreviation="PA", Region="Norte" },
+              new State { Name="Acre", Abbreviation="AC", Region="Norte" },
+              new State { Name="Alagoas", Abbreviation="AL", Region="Nordeste" },
+            },
+            new[] {
+              new { StateAbbreviation = "PA", NumberOfCities = 2 },
+              new { StateAbbreviation = "AC", NumberOfCities = 1 },
+              new { StateAbbreviation = "AL", NumberOfCities = 1 },
+            }
+        },
+    };
+
+
+    [Theory(DisplayName = "GetNumberOfCitiesForEachState deveria retornar o número de cidades para cada estado")]
+    [MemberData(nameof(TestData))]
+    public void TestGetNumberOfCitiesForEachState(City[] citiesEntry, State[] statesEntry, dynamic[] expected)
+    {
+        var instance = new Brazil();
+        instance.cities = citiesEntry;
+        instance.states = statesEntry;
+        var result = instance.GetNumberOfCitiesForEachState();
+
+        result.Should().BeEquivalentTo(expected);
+    }
+}
+
+OBS: O DataAnotation MemberData recebe o nome do atributo criado para armazenar os valores do teste utilizando a palavra reservada nameof.
+
+TIPO DE ERRO POSSÍVEL:
+
+An attribute must be a constant expression, typeof expression or array creation expression of an attribute parameter type
+
+Sempre que vir um erro parecido com esse em um InlineData do seu código, tente transformar para MemberData, 
+seguindo os passos acima para corrigir o erro.

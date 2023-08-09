@@ -1,0 +1,149 @@
+Consultas Aninhadas
+
+São consultas LINQ criadas a partir do resultado de uma primeira consulta ou para compor um dado de uma consulta mais generalista.
+Isso quer dizer que todo ou qualquer dado obtido por uma consulta seja através de um select ou de um novo grupo da cláusula into
+pode ser fonte de dados para um novo select ou agregação.
+Isso tudo permite que não seja necessário criar várias coleções ou listas para realizar várias consultas a fim de obter 
+um dado final mais complexo.
+
+========================================================================================================================
+
+Consultas aninhadas em Projeção
+As consultas aninhadas construídas em uma projeção são as consultas aninhadas cuja uma nova consulta (aninhada)
+é realizada sobre a cláusula select de uma primeira consulta.
+
+EXEMPLO:
+
+
+public class Car {
+    public string Brand { get; set; }
+    public string Model { get; set; }
+    public float Price { get; set; }
+}
+
+
+
+public class Category {
+    public string Name;
+    public List<Car> Cars;
+}
+
+
+
+List<Category> categoryCars = new List<Category>
+{
+    new Category { Name = "Luxury", Cars = new List<Car> {
+                    new Car { Brand = "Ferrari", Model = "LaFerrari", Price = 7100000 },
+                    new Car { Brand = "McLaren", Model = "Elva", Price = 8600000 },
+                    new Car { Brand = "Bentley", Model = "Mulliner Batur", Price = 10200000 },
+                    new Car { Brand = "Aston Martin", Model = "Valkyrie", Price = 16300000 },
+                    new Car { Brand = "BMW", Model = "IX", Price = 670000 }
+                }},
+    new Category { Name = "Sport", Cars = new List<Car> {
+                    new Car { Brand = "Bugatti", Model = "Divo", Price = 26000000 },
+                    new Car { Brand = "Ferrari", Model = "F8 Spider", Price = 5200000 },
+                    new Car { Brand = "McLaren", Model = "Speedtail", Price = 40000000 },
+                    new Car { Brand = "Koenigsegg", Model = "Agera", Price = 7500000 },
+                    new Car { Brand = "Devel", Model = "Sixteen", Price = 79000020 }
+                }}
+};
+
+
+A partir do conhecimento das classes e dos dados da nossa lista, vamos realizar a seguinte consulta:
+
+Retornar os dados dos carros esportivos que custam mais de R$ 30M.
+O retorno da consulta deve manter o mesmo formato da classe Category, ou seja, não há a necessidade de um DTO.
+
+
+
+ var carsSport = from categoryCar in categoryCars
+                        where categoryCar.Name == "Sport"
+                        select new {
+                            categoryCar.Name,
+                            Cars = from car in categoryCar.Cars 
+                                   where car.Price > 30000000
+                                   select car
+                            };
+
+
+foreach (var carSportOver5M in carsSportOver5M)
+{
+    Console.WriteLine("Categoria: " + carSportOver5M.Name);
+
+    foreach (var car in carSportOver5M.Cars)
+    {
+        Console.WriteLine($"\t {car.Brand} {car.Model} - Preço: R$ {car.Price}");
+    }
+            
+}
+
+
+RETORNO:
+
+Categoria: Sport
+         McLaren Speedtail - Preço: R$ 40000000
+         Devel Sixteen - Preço: R$ 79000020
+
+
+========================================================================================================================
+
+Consultas aninhadas em Agrupamento
+
+Agora iremos criar uma consulta aninhada que irá depender pela linearização de um agrupamento.
+
+Enquanto criamos nossas consultas LINQ, é possível criar objetos temporários e nomeá-los para a 
+construção de consultas futuras, mas, todos dentro da mesma query.
+
+
+EXEMPLO:
+
+Suponhamos que temos a mesma fonte de dados.
+Suponhamos que iremos agrupar pela marca do carro.
+Iremos ordenar os carros de uma marca pelo preço do carro.
+
+
+ var carsByBrand = from categoryCar in categoryCars
+                   from car in categoryCar.Cars
+                   select new {
+                        car.Brand,
+                        car.Model,
+                        car.Price,
+                        CategoryName = categoryCar.Name
+                    }
+
+Essa consulta irá linearizar os nossos dados criando um atributo chamado CategoryName para o nome da categoria de cada carro.
+
+ Portanto, essa consulta nos traria todos os carros em uma lista de objetos cujo cada objeto possui os atributos:
+ 
+Brand,
+Model,
+Price,
+CategoryName.
+
+
+var carsByBrand =   from categoryCar in categoryCars
+                    from car in categoryCar.Cars
+                    select new {
+                        car.Brand,
+                        car.Model,
+                        car.Price,
+                        CategoryName = categoryCar.Name
+                    } into grupoA
+                    orderby grupoA.Price
+                    group grupoA by grupoA.Brand;
+
+1 Nessa nova consulta, temos a primeira etapa com o nosso select sendo atribuído ao nome grupoA pela nossa cláusula into
+
+2 Depois, continuamos a nossa consulta realizando um orderby para ordenar os carros pela ordem crescente de preço.
+
+3 Por último, realizamos o group pela marca do veículo, nesse caso, o grupoA.Brand.
+
+
+ foreach (var carByBrand in carsByBrand)
+{
+    Console.WriteLine(carByBrand.Key);
+    foreach (var car in carByBrand)
+    {
+        Console.WriteLine($"\t {car.Model} - {car.CategoryName} - Preço: R$ {car.Price}");
+    }
+}

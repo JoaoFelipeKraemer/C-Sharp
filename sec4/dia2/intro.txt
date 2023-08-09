@@ -1,0 +1,4 @@
+Agrupamento de dados com LINQ
+Operações de conjunto com LINQ
+Consultas LINQ aninhadas
+Expressões lambda

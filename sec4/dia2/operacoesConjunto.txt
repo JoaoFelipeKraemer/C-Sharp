@@ -1,0 +1,117 @@
+Operações de Conjunto
+
+Podemos criar consultas que criam conjuntos de fontes de dados com o mesmo formato, através das operações de conjunto.
+
+As operações de conjunto são muito similares aos conjuntos da matemática e criam saídas com os mesmos tipos de dados das 
+suas operações de entrada tratando listas, coleções e fontes de dados como conjuntos de valores que podem ser manipulados. 
+========================================================================================================================
+Union
+
+
+A operação Union é responsável por unir dois conjuntos.
+
+A sua saída é um novo conjunto que traz todos os elementos dos dois conjuntos unidos mas sem repetir valores que estão presentes
+ nos dois conjuntos. 
+
+EXEMPLO:
+
+
+List<string> stacksProjectA = new List<string> { "C#", "SQL Server", "JSON", "Microsserviços" };
+List<string> stacksProjectB = new List<string> { "Java", "MySQL", "JSON", "WebAPI" };
+List<string> stacksProjectC = new List<string> { "C#", "MySQL", "XML" };
+
+
+
+var stacksProjectsAB = stacksProjectA.Union(stacksProjectB);
+
+foreach (var stack in stacksProjectsAB) {
+    Console.WriteLine(stack);
+}
+
+
+Criamos nesse caso, uma nova variável chamada stacksProjectsAB produzida pela união de dois conjuntos. 
+
+Realizando um laço para percorrer os itens da nova variável, temos a seguinte saída:
+
+C#
+SQL Server
+JSON
+Microsserviços
+Java
+MySQL
+WebAPI
+
+A cláusula Union é cumulativa
+
+var stacksProjectsABC = stacksProjectA.Union(stacksProjectB).Union(stacksProjectC);
+
+foreach (var stack in stacksProjectsABC) {
+    Console.WriteLine(stack);        
+}
+
+
+========================================================================================================================
+Intersect
+A operação Intersect é a operação que resulta na intersecção dos valores de dois grupos, ou seja,
+produz uma coleção de elementos que estão presentes em ambas as coleções.
+
+var stacksProjectsAandB = stacksProjectA.Intersect(stacksProjectB);
+
+foreach (var stack in stacksProjectsAandB) {
+    Console.WriteLine(stack);
+}
+
+RET0RNO : JSON
+
+OBS:  a única tecnologia em comum entre A  e B
+
+
+========================================================================================================================
+Except
+
+A operação Except é responsável por criar um conjunto de elementos de um conjunto menos os elementos de um segundo conjunto.
+
+EXEMPLO:
+
+List<string> stacksProjectA = new List<string> { "C#", "SQL Server", "JSON", "Microsserviços" };
+List<string> stacksProjectB = new List<string> { "Java", "MySQL", "JSON", "WebAPI" };
+
+var stacksProjectsAexceptB = stacksProjectA.Except(stacksProjectB);
+
+foreach (var stack in stacksProjectsAexceptB) {
+    Console.WriteLine(stack);
+}
+
+RETORNO: C#
+SQL Server
+Microsserviços
+
+A é a Base
+
+========================================================================================================================
+Distinct:
+
+A operação Distinct é a operação responsável por retornar uma coleção com os diferentes elementos de uma coleção original sem repeti-los.
+
+Diferente das outras operações de conjunto, o Distinct atua em apenas uma coleção.
+
+EXEMPLO
+Suponhamos agora apenas uma coleção que possui elementos repetidos:
+
+
+List<string> stacksProject = new List<string> { "C#", "SQL Server", "JSON", "C#", "XML", "SQL Server", "Microsserviços", "Microsserviços" };
+
+
+ var stacksProjectDistinct = stacksProject.Distinct();
+
+foreach (var stack in stacksProjectDistinct) {
+    Console.WriteLine(stack);
+}
+
+RETORNO:
+
+C#
+SQL Server
+JSON
+XML
+Microsserviços
