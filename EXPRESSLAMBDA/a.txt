@@ -1,0 +1,5 @@
+EXPRESSÃO LAMBDA
+
+VAR sum age = pets.Sum(pet => pet.Age)
+
+VAR sum age = pets.Sum(pet => pet.Age == 1 ? pet.Age : 0)
