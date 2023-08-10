@@ -1,0 +1,75 @@
+Criando Models Manualmente
+
+public class Student
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string CurrentClass { get; set; }
+}
+
+Essa classe pode ser utilizada pelo Entity Framework como um Model mapeado com um banco de dados, 
+e para isso precisamos de uma classe de contexto. 
+
+Vamos então utilizar a classe MyContext da lição de ORM.txt:
+
+
+using Microsoft.EntityFrameworkCore;
+
+public class MyContext : DbContext
+{
+    public MyContext(DbContextOptions<MyContext> options)
+            : base(options)
+    {}
+
+    // Adicionamos Student como um DbSet
+    public DbSet<Student> Students { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            var connectionString = Environment.GetEnvironmentVariable("DOTNET_CONNECTION_STRING");
+
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+    }
+}
+
+===============================================================================================================
+
+Criando Models Automaticamente
+
+1 passo 
+Primeiramente, precisamos nos certificar de que temos a CLI do Entity Framework Core instalada em nossa máquina com o comando:
+
+dotnet ef
+
+2 passo
+
+Também certifique-se de que no projeto de destino tenha instalado o pacote Microsoft.EntityFrameworkCore.Design.
+ Caso não esteja instalado, execute o comando:
+
+ dotnet add package Microsoft.EntityFrameworkCore.Design
+
+3 passo
+
+Agora precisamos criar uma Connection String e inseri-la no seguinte comando:
+
+dotnet ef dbcontext scaffold "Server=127.0.0.1;Database=trybe_db;User=SA;Password=Password12" Microsoft.EntityFrameworkCore.SqlServer -o Models
+
+
+explicação do passo 3:
+
+Nesse comando estamos nos conectando a um banco de dados SQL Server, e por isso nossa Connection String precisa ser de um banco de dados
+ desse tipo.
+
+Sabemos que a conexão será em um banco de dados SQL Server por conta dessa parte do comando
+ após a Connection String: Microsoft.EntityFrameworkCore.SqlServer.
+ Aqui nós especificamos o Provider que será utilizado para se conectar. 
+ Esse Provider precisa estar instalado no projeto de destino para que o comando funcione.
+
+Em seguida, estamos utilizando a flag -o, que envia as saídas desse comando para uma pasta chamada Models.
+
+Como esse comando irá gerar um DbContext e algumas classes que serão nossos Models,
+faz sentido que a saída desse comando seja enviada para essa pasta.
+
