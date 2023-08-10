@@ -1,0 +1,25 @@
+Dentre os Sistemas Gerenciadores de Bancos de Dados, os SGBDs, a Microsoft desenvolveu o SQL Server,
+
+um gerenciador de bancos de dados relacionais.
+ 
+O SQL Server é muito utilizado, principalmente entre as pessoas desenvolvedoras .NET.
+
+docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=123456' -p 1433:1433 -v Downloads/etc/var/opt/mssql/data -d mcr.microsoft.com/mssql/server:2019-latest
+
+docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=123456' -p 1433:1433 -v Downloads/etc/var/opt/mssql/data -d mcr.microsoft.com/mssql/server:2019-latest
+
+
+azuredatastudio
+,
+
+
+Input type: Parameters
+Server: localhost
+Authentication Type: SQL Login
+User name: sa
+Password: SqlServer123!
+Trust Server certificate: True
+Name (optional): my_sql_server
+
+
+Usando o Azure Data Studio
