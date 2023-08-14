@@ -1,0 +1,111 @@
+    Mapeando Entidades
+
+As tabelas serão os nomes das entidades mapeadas, e as colunas serão suas respectivas propriedades.
+===============================================================================================================
+
+Utilizando Model para criar tabelas e colunas em um banco de dados
+
+A conexão para criação de tabelas e colunas em um banco de dados de um código baseado em Code-First
+é realizado utilizando a classe DbSet do namespace. Microsoft.EntityFrameworkCore.
+
+DbSet significa Database Setup, ou Settings, que, numa tradução literal, seria Configuração de Banco de Dados,
+
+uma classe genérica DbSet<T>, podendo ser atribuída a ela qualquer classe. Por exemplo, o DbSet de um Model Category seria DbSet<Category>.
+
+EXEMPLO:
+Criamos um projeto do tipo console e criaremos dois Models, um para Category e outro para Product
+
+public class Category
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+
+
+Para o Entity Framework Core entender que queremos criar um banco de dados, DataBase ou, simplesmente, DB,
+precisaremos criar um Model Context que herda algumas características base do DBContext.
+ 
+Para isso, será necessário instalar o pacote Nuget Microsoft.EntityFrameworkCore, executando o seguinte comando:
+********************
+dotnet add package Microsoft.EntityFrameworkCore
+********************
+
+E também precisamos instalar os providers adequados com o banco de dados que vamos utilizar.
+
+Neste caso, vamos utilizar um banco de dados SQL Server, então vamos instalar o provider do SQL Server com:
+********************
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+********************
+
+Agora podemos adicionar a instrução using Microsoft.EntityFrameworkCore; na parte superior do código. 
+
+Será em uma classe de contexto herdando de DbContext que vamos criar nossos DbSets da seguinte forma:
+
+
+public class MyContext : DbContext
+{
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Product> Products { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer(@"
+                Server=127.0.0.1;
+                Database=my_context_db;
+                User=SA;
+                Password=Password12!;
+            ");
+        }
+    }
+}
+
+Dentro do arquivo Program.cs, inclua o seguinte código:
+
+using (var db = new MyContext())
+{
+    db.Database.EnsureCreated();
+    // Código executado no banco de dados aqui
+}
+
+***************************
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        using (var db = new MyContext())
+        {
+            db.Database.EnsureCreated();
+
+            // Create and save a new Category
+            Console.Write("Enter a name for a new Category: ");
+            var name = Console.ReadLine();
+
+            var category = new Category { Name = name };
+            db.Categories.Add(category);
+            db.SaveChanges();
+
+            // Display all Categories from the database
+            var query = from b in db.Categories
+                        orderby b.Name
+                        select b;
+
+            Console.WriteLine("All categories in the database:");
+            foreach (var item in query)
+            {
+                Console.WriteLine(item.Name);
+            }
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
+    }
+}
