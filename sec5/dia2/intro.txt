@@ -1,0 +1,4 @@
+Descrição de relacionamentos com o Entity Framework
+Criação de repositórios com Entity Framework
+Teste de Repositórios
+Consultas Avançadas
