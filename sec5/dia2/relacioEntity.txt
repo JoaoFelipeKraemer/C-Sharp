@@ -1,0 +1,123 @@
+Descrevendo relacionamentos com Entity Framework
+************************************************************************************************************
+
+Banco de Dados vs Convenções
+
+Alguns exemplos de boas práticas que o SQLStyle Guide mostra são:
+
+Colunas:
+
+Usar sempre singular;
+
+Não usar o mesmo nome dado à tabela.
+
+Tabelas:
+
+Não usar o prefixo tbl;
+
+Evitar, sempre que possível, concatenar nome de duas tabelas para evidenciar relacionamentos;
+
+Usar nomes coletivos ou, menos idealmente, no plural, em ordem de preferência staff >>> employees;
+
+Palavras Reservadas:
+
+Sempre em UPPERCASE.
+************************************************************************************************************
+
+Data Annotations e Banco de Dados
+
+
+*usar algumas Data Annotation para conectar os Models às colunas de uma tabela,
+
+public class Blog
+{
+    [Column("blog_id")]
+    public int BlogId {get; set;}
+    
+    public string Url {get; set;}
+}
+
+*É possível também configurar algumas características específicas
+
+public class Blog
+{
+   
+    public int BlogId {get; set;}
+    
+    [Column(TypeName = "varchar(200)")]
+
+    public string Url {get; set;}
+
+    [Column(TypeName = "decimal(5,2)")]
+
+    public decimal Rarting {get; set;}
+}
+
+*Além disso, podemos usar a Data Annotation de modo a restringir determinados parâmetros,
+ tal qual fazemos no roteamento de APIs, porém utilizando a seguinte estrutura:
+
+public class Blog
+{
+   
+    public int BlogId {get; set;}
+    
+    [MaxLength(500)]
+    public string Url {get; set;}    
+}
+
+public class Blog
+{
+   
+    public int BlogId {get; set;}
+    
+    [Precisiom(14,2)]
+    public decimal Score {get; set;}    
+
+    [Precisiom(3)]
+    public DateTime LastUpdated {get; set;}    
+
+}
+
+************************************************************************************************************
+Fluent API vs Data Annotation
+
+Tudo que é possível configurar com Data Annotations também é possível com Fluent API, porém o contrário não ocorre.
+
+FluentAPI tem um leque maior de configurações se comparado às Data Annotations
+
+
+configurações que são possíveis apenas via Fluent API:
+
+1-Desligar a deleção por cascateamento
+
+O comportamento padrão do Entity Framework Core é haver uma deleção de elementos filhos automaticamente quando o elemento pai é excluído.
+
+Com um .WillCascadeOnDelete(false), o Fluent API desabilita essa deleção automática.
+
+2-Especificar uma foreign key de determinada coluna
+Quando essa chave não estiver expressamente exposta em seu Model, o EF Core irá nomear automaticamente uma, se for necessário.
+
+ Com a Fluent API, você mesmo poderá nomear a Foreign Key no mapeamento, caso não tenha sido nomeada em seu Model, basta um
+ 
+  .Map(conf => conf.MapKey("MyForeignKeyID")).
+
+3-Maior detalhamento para relacionamentos de banco de dado
+
+Fluent API traz também um detalhamento maior para relacionamentos de banco de dados,
+ com os métodos .WithMany(), WithRequiredDependent(), entre outros.
+
+4- Padrão Has… With…
+
+De modo geral, a configuração de relacionamentos com Fluent API segue um padrão Has/With
+
+O lado Has pode ser representado por HasOne (tem um) ou HasMany (tem vários).
+
+O lado With pode ser representado por WithOne (com um) ou WithMany(com vários).
+
+OBS: HasOne e WithOne são usados para propriedades de navegação de referência
+
+ enquanto HasMany e WithMany são usados para as propriedades de navegação de coleção.
+
+*Propriedades de navegação de referência são aquelas que passamos nos Models/Entities
+
+*enquanto navegação de coleção são as que referenciam tabelas intermediárias ou tabela de junção, por exemplo, numa relação N:N.
