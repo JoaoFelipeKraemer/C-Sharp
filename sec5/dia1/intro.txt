@@ -1,0 +1,4 @@
+SQL Server - banco de dados oficial da Microsoft
+Entity Framework -  um ORM
+Conectar nossa aplicação ao banco de dados
+Mapeamento de entidades

@@ -1,0 +1,74 @@
+Definindo Conventions
+
+As Conventions, ou convenções, são conjuntos de regras usadas para configurar automaticamente
+ um modelo conceitual com base em definições de classe ao trabalhar com Code First.
+
+ public class Category
+{
+    public int CategoryId { get; private set; }
+    public string Name { get; private set; }
+
+    public Category(string name)
+    {
+        ValidateDomain(name);
+    }
+
+    public ICollection<Product> Products { get; set; }
+    .
+    .
+    .
+}
+***************************
+***************************
+***************************
+
+
+Primary Key Conventions
+
+<NomeDaEntidade>Id
+
+EXEMPLO:
+
+public class Product
+{
+    public int ProductId { get; set; }
+    public string Name { get; set; }
+}
+
+obs: Sendo o sufixo Id case insensitive, isto é, pode ser utilizado StudentId ou StudentID, ou, ainda, Studentid
+Além disso, é necessário que a propriedade seja do tipo numérico ou GUID.
+
+
+public class Product
+{
+    public int ProductId { get; set; }
+    public string Name { get; set; }
+}
+************************************************************************************************************
+
+Relationship Conventions
+
+1-N.
+O Entity Framework dá suporte apenas a esse tipo de relacionamento; 
+
+OBS: para relacionamentos N-N devemos usar Data Annotations ou FluentAPI, mas isso será abordado na próxima lição.
+
+EXEMPLO:
+
+public sealed class Product
+{
+    public int ProductId { get; private set; }
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public decimal Price { get; private set; }
+    public int Stock { get; private set; }
+    public string Image { get; private set; }
+    .
+    .
+    .
+    
+    public int CategoryId { get; set; }
+    // a propriedade abaixo é considerada propriedade de navegação e serve para estabelecer relacionamentos,
+    // o Entity Framework entende dessa forma, pois o tipo Category não é um tipo escalar (tipo primitivo)
+    public Category Category { get; set; }
+}

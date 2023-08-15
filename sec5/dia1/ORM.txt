@@ -1,0 +1,128 @@
+Entity Framework
+
+ORM -> para solucionar  problemas do mapeamento entre o banco de dados e as classes no código.
+
+são bibliotecas utilizadas para mapear classes e entidades programadas utilizando Programação Orientada a Objetos, POO, 
+para tabelas e colunas em um banco de dados, ou seja, criar uma ponte entre os dados no banco de dados e a linguagem de programação.
+
+========================================================================================================
+Entity Framework: A ORM do universo .NET
+
+EXEMPLO:
+
+em uma tabela Students em um banco de dados. Essa tabela tem as seguintes colunas:
+
+Id do tipo inteiro
+StudentName do tipo varchar
+Para realizar uma consulta a essa tabela, seria necessário criar um código SQL semelhante a este:
+
+SELECT Id, StudentName FROM Students;
+
+Para inserir dados nessa tabela, precisaríamos fazer uma consulta como:
+
+INSERT INTO Students VALUES (5, "João");
+
+===================================================
+
+Instalando Entity Framework Core
+
+Para instalar o Entity Framework Core em um projeto .NET, execute o comando:
+
+dotnet add package Microsoft.EntityFrameworkCore
+===================================================
+Para utilizar o Entity Framework com o SQL Server, devemos instalar o seu provedor com o seguinte comando:
+
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+===================================================
+O Entity Framework também conta com um pacote que permite à pessoa desenvolvedora gerar códigos de migração e entidades automaticamente. 
+Este é o Microsoft.EntityFrameworkCore.Design e, para instalá-lo, execute o comando:
+
+dotnet add package Microsoft.EntityFrameworkCore.Design
+===================================================
+O Entity Framework Core também conta com uma CLI própria, que pode ser usada em conjunto com 
+o pacote de Design para criar códigos C# automaticamente a partir de modelos e bancos de dados.
+
+Para instalar a CLI do Entity Framework Core, execute o comando:
+
+dotnet tool install --global dotnet-ef
+
+Agora verificamos se a CLI foi instalada com sucesso com o comando:
+
+dotnet ef
+===================================================
+
+Conectando ao banco de dados
+
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+
+===================================================
+Agora precisamos criar a nossa Connection String e, em seguida, podemos adicioná-la a uma variável de ambiente. 
+As Connection Strings do provedor para SQL Server consistem no seguinte padrão:
+
+Server=<ip do servidor e porta>;Database=<nome do banco de dados>;User=<nome de usuário>;Password=<senha>;
+
+===================================================
+Seguindo esse padrão, basta substituir pelos valores do servidor que será utilizado para criar a Connection String.
+Iremos usar aqui o seguinte valor:
+
+Server=127.0.0.1;Database=trybe_db;User=SA;Password=Password12!
+
+===================================================
+Criando variável de ambiente
+
+export DOTNET_CONNECTION_STRING="Server=127.0.0.1;Database=trybe_db;User=SA;Password=Password12!"
+
+===================================================
+
+Configurando conexão
+
+Com o Entity Framework Core, para se conectar ao banco de dados utilizamos uma classe herdeira de DbContext, 
+que será a responsável por se comunicar com o banco de dados.
+
+Vamos criar então uma classe de exemplo:
+
+// Importar o EntityFrameworkCore para utilizar DbContext
+using Microsoft.EntityFrameworkCore;
+
+public class MyContext : DbContext
+{
+    // Criar um construtor que envia as configurações de inicialização
+    // para o construtor da classe pai DbContext
+    public MyContext(DbContextOptions<MyContext> options)
+            : base(options)
+    {}
+}
+
+===================================================
+Agora temos uma classe de contexto com o banco de dados chamada MyContext. É nessa classe que iremos utilizar
+ nossa variável de ambiente, porém para utilizá-la vamos sobrescrever o método OnConfiguring da classe DbContext.
+ using Microsoft.EntityFrameworkCore;
+
+public class MyContext : DbContext
+{
+    public MyContext(DbContextOptions<MyContext> options)
+            : base(options)
+    {}
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        // Verificamos se o banco de dados já foi configurado
+        if (!optionsBuilder.IsConfigured)
+        {
+            // Buscamos o valor da connection string armazenada nas variáveis de ambiente
+            var connectionString = Environment.GetEnvironmentVariable("DOTNET_CONNECTION_STRING");
+
+            // Executamos o método UseSqlServer e passamos a connection string a ele
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+    }
+}
+
+===================================================
+Agora a nossa classe contexto com o banco de dados MyContext será configurada para se conectar a um servidor de banco de dados SQL Server.
+
+O objeto do tipo DbContextOptionsBuilder recebido como parâmetro da função terá os métodos 
+de acordo com os provedores de bancos de dados instalados no projeto.
+
+ O método UseSqlServer só está disponível porque instalamos o pacote Microsoft.EntityFrameworkCore.SqlServer anteriormente.
+
